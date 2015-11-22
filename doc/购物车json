@@ -1,0 +1,10 @@
+购物车本地数据json
+sellerName：
+goodsList：
+	goodID
+	goodName
+	goodPicUrl
+	goodSize
+	goodPirce
+	goodBuyNumber
+	

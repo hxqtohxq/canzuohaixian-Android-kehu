@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/linear_car_base"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/page_bg" >
+
+    <FrameLayout
+        android:id="@+id/title_car"
+        style="@style/TitleTheme"
+        android:layout_alignParentTop="true" >
+
+        <TextView
+            style="@style/TitleMiddleTheme"
+            android:text="@string/main_car" />
+
+        <ImageView
+            android:id="@+id/image_car_edit"
+            style="@style/TitleRightTheme"
+            android:src="@drawable/order_edit" />
+    </FrameLayout>
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/title_car"
+        android:layout_marginBottom="45dp"
+        android:layout_marginTop="15dp"
+        android:background="#FFFFFF"
+        android:paddingEnd="30dp"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:paddingStart="30dp" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#FFFFFF"
+                android:orientation="horizontal" >
+
+                <CheckBox
+                    android:id="@+id/checkBox_car_sellerName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:paddingEnd="0dp"
+                    android:paddingLeft="18dip"
+                    android:paddingRight="0dp"
+                    android:paddingStart="18dip"
+                    android:text="卖家名称"
+                    android:textColor="#000000"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/page_bg" />
+
+            <LinearLayout
+                android:id="@+id/linear_car_goods"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="45dip"
+        android:layout_alignParentBottom="true"
+        android:background="#FFFFFF" >
+
+        <TextView
+            android:id="@+id/text_car_all"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
+            android:gravity="center"
+            android:text="合计："
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/text_car_price"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_toEndOf="@id/text_car_all"
+            android:layout_toRightOf="@id/text_car_all"
+            android:gravity="center"
+            android:text="￥110.00"
+            android:textColor="@color/theme"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/btn_car_commit"
+            android:layout_width="80dip"
+            android:layout_height="fill_parent"
+            android:layout_alignParentRight="true"
+            android:background="@color/theme"
+            android:text="结算"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp" />
+    </RelativeLayout>
+
+</RelativeLayout>

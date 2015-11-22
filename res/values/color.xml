@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="page_bg">#EAEAEA</color>
+    <color name="theme">#F55718</color>
+    <color name="theme_normal">#939393</color>
+    <!-- 透明 -->
+    <color name="transparency">#7fe9e6e6</color>
+    <color name="transparency_Title">#0e000000</color>
+    <color name="transparency_edit">#0e000000</color>
+    <color name="Title_transparency">#ffffff</color>
+
+    <!-- 登陆页面 1111111111111111111111111111111111111 -->
+    <color name="login_Title">#d25c13</color>
+    <color name="login_Title_background">#e6dada</color>
+    <color name="login_Btn">#d75932</color>
+    <color name="login_Btn_text">#faf7f7</color>
+    <!-- End 登陆页面结束了 11111111111111111111111111 -->
+
+
+    <!-- 订单与物流页面222222222222222222222222222222222 -->
+    <color name="logistics_TitleBackgroundColor">#f16507</color>
+    <color name="logistice_textColor">#857f7f</color>
+    <color name="logistice_TitleColor">#ffff</color>
+    <color name="logistice_backColor">#dedddd</color>
+    <color name="logistice_moduleColor">#fbf8f8</color>
+
+    <!-- 订单与物流页面结束了2222222222222222222222222222 -->
+    <color name="theme_color">#36A9CE</color>
+    <color name="interval">#E0E0E0</color>
+    <color name="background_color">#3DC5FF</color>
+    <color name="dark_line">#999999</color>
+    <color name="light_color">#E6E6E6</color>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="money_util">#dd3a3a</color>
+    <color name="black">#3e3a3a</color>
+    <color name="order_list_blue">#4979da</color>
+    <color name="order_list_gree">#13e27a</color>
+    <color name="order_list_black">#181717</color>
+    <color name="order_list_conmen">#937d7d</color>
+    <color name="order_item_Btn">#a29797</color>
+    <color name="tab_white">#ebd8d8</color>
+    <color name="text_color_pressed">#8800ff00</color>
+    <color name="text_color_normal">#ffffff</color>
+
+</resources>

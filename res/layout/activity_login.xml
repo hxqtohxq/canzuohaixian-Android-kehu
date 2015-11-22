@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/login_backgroud"
+    android:orientation="vertical" >
+
+    <!-- 登陆画面 -->
+
+    <LinearLayout
+        style="@style/Login_LinearView"
+        android:layout_height="fill_parent"
+        android:layout_marginBottom="120dp"
+        android:layout_marginTop="120dp" >
+
+        <!-- 标题 -->
+
+        <TextView style="@style/Login_Title" />
+
+        <LinearLayout
+            style="@style/Login_LinearView"
+            android:layout_weight="6"
+            android:background="@color/transparency" >
+
+            <EditText
+                android:id="@+id/login_InTelPhoneNumber"
+                style="@style/Login_Edit"
+                android:layout_marginTop="35dp"
+                android:ems="15"
+                android:inputType="phone"
+                android:text="@string/phone_email_username" />
+
+            <View style="@style/Login_Link" />
+
+            <EditText
+                android:id="@+id/login_In_Password"
+                style="@style/Login_Edit"
+                android:ems="15"
+                android:inputType="textPassword"
+                android:text="@string/password" />
+
+            <View style="@style/Login_Link" />
+
+            <TextView
+                android:id="@+id/login_In_FindPasswordText"
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_weight="1"
+                android:background="@color/transparency_edit"
+                android:gravity="top|right"
+                android:text="@string/find_password" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_marginBottom="-10dp"
+                android:layout_marginTop="45dp"
+                android:layout_weight="2"
+                android:orientation="horizontal" >
+
+                <Button
+                    android:id="@+id/login_in_DoLoginBtn"
+                    style="@style/Login_Btn"
+                    android:layout_marginRight="2dp"
+                    android:text="@string/login_in" />
+
+                <Button
+                    android:id="@+id/Login_In_free_registationBtn"
+                    style="@style/Login_Btn"
+                    android:text="@string/free_registation" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>
