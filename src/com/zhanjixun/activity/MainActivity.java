@@ -44,6 +44,7 @@ public class MainActivity extends FragmentActivity {
 	//private boolean locationState = false;
 	
 	public Handler hanler = new Handler(){
+		@Override
 		public void handleMessage(android.os.Message msg) {
 			switch (msg.what) {
 			case 1:

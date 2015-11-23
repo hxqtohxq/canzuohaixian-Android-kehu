@@ -13,7 +13,7 @@ import com.zhanjixun.activity.GoodListActivity;
 import com.zhanjixun.activity.MainActivity;
 import com.zhanjixun.adapter.AdvertisePagerAdapter;
 
-import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -63,6 +63,7 @@ public class HomeFragment extends Fragment implements OnClickListener {
 	private MyPagerListener myListener;
 	private MyThread adThread;
 	private Handler handler;
+	private Context context;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -139,6 +140,7 @@ public class HomeFragment extends Fragment implements OnClickListener {
 
 	}
 
+	@Override
 	public void onClick(View v) {
 		int id = v.getId();
 		Intent intent = new Intent(getActivity(), GoodListActivity.class);
@@ -172,24 +174,25 @@ public class HomeFragment extends Fragment implements OnClickListener {
 	}
 
 	private void location() {
-		new Thread() {
-			public void run() {
-				locTv.setText("定位中...");
-				LocationClient locClient = ((LocationApplication) (getActivity().getApplication())).mLocationClient;
-				LocationClientOption option = new LocationClientOption();
-				option.setLocationMode(LocationMode.Hight_Accuracy);// 可选，默认高精度，设置定位模式，高精度，低功耗，仅设备
-				option.setCoorType("gcj02");// 可选，默认gcj02，设置返回的定位结果坐标系，
-				option.setScanSpan(1000);// 可选，默认0，即仅定位一次，设置发起定位请求的间隔需要大于等于1000ms才是有效的
-				option.setIsNeedAddress(true);// 可选，设置是否需要地址信息，默认不需要
-				option.setOpenGps(true);// 可选，默认false,设置是否使用gps
-				option.setLocationNotify(true);// 可选，默认false，设置是否当gps有效时按照1S1次频率输出GPS结果
-				option.setIgnoreKillProcess(false);// 可选，默认true，定位SDK内部是一个SERVICE，并放到了独立进程，设置是否在stop的时候杀死这个进程，默认不杀死
-
-				locClient.setLocOption(option);
-				((LocationApplication) getActivity().getApplication()).mLocationResult = locTv;
-				locClient.start();
-			}
-		}.start();
+//		new Thread() {
+//			@Override
+//			public void run() {
+//				locTv.setText("定位中...");
+//				LocationClient locClient = ((LocationApplication) (getActivity().getApplication())).mLocationClient;
+//				LocationClientOption option = new LocationClientOption();
+//				option.setLocationMode(LocationMode.Hight_Accuracy);// 可选，默认高精度，设置定位模式，高精度，低功耗，仅设备
+//				option.setCoorType("gcj02");// 可选，默认gcj02，设置返回的定位结果坐标系，
+//				option.setScanSpan(1000);// 可选，默认0，即仅定位一次，设置发起定位请求的间隔需要大于等于1000ms才是有效的
+//				option.setIsNeedAddress(true);// 可选，设置是否需要地址信息，默认不需要
+//				option.setOpenGps(true);// 可选，默认false,设置是否使用gps
+//				option.setLocationNotify(true);// 可选，默认false，设置是否当gps有效时按照1S1次频率输出GPS结果
+//				option.setIgnoreKillProcess(false);// 可选，默认true，定位SDK内部是一个SERVICE，并放到了独立进程，设置是否在stop的时候杀死这个进程，默认不杀死
+//
+//				locClient.setLocOption(option);
+//				((LocationApplication) getActivity().getApplication()).mLocationResult = locTv;
+//				locClient.start();
+//			}
+//		}.start();
 
 	}
 
