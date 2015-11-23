@@ -133,41 +133,5 @@
     <string name="all_goods">全部商品</string>
     <string name="goods">商品</string>
     <string name="seller">商家</string>
-    
-    
-     <!--物流详情-->
-    <string name="logistice_state_informationTopTitle">物流详情</string>
-    <string name="logistice_state_information_Title">物流状态:</string>
-    <string name="logistice_state">运输中</string>
-    <string name="logistice_company_Title">快递公司:</string>
-    <string name="logistice_company">圆通快递</string>
-    <string name="logistice_IdNumber_Title">快递单号:</string>
-    <string name="logistice_IdNumber">03698455646</string>
-    <string name="logistice_CallNumber_Title">官方电话:</string>
-    <string name="logistice_CallNumber">1234567</string>
-    
-     <!--订单主页的item   其他页面也会引用-->
-    <string name="orderHome_item_shoper">海阁号</string>
-    <string name="orderHome_item_shoper_Allshop">查看该店的全部商品</string>
-    <string name="orderHome_item_shopName">秋刀鱼</string>
-    <string name="orderHome_item_shopPrice_Title1">￥</string>
-    <string name="orderHoem_item_shopPrice">4.5</string>
-    <string name="orderHome_item_shopPrice_Title2">/斤</string>
-    <string name="orderHome_item_shopSize_Title">规格:</string>
-    <string name="orderHome_item_shopSize">中等大小(1斤-3斤)</string>
-    <string name="orderHome_item_shopNumber_Title">x</string>
-    <string name="orderHome_item_shopNumber">6</string>
-    <string name="orderHome_shop_number_Title1">共</string>
-    <string name="orderHome_shop_number">5</string>
-    <string name="orderHome_shop_money_Title1">件商品</string>
-    <string name="orderHome_shop_money_Title2">合计: ￥</string>
-    <string name="orderHome_shop_Allmoney">40.00</string>
-    <string name="orderHome_money_Title1">(含运费:</string>
-    <string name="orderHome_money">10:00</string>
-    <string name="orderHome_money_Title2">)</string>
-    <string name="orderHome_item_LookUpLogistice_Btn">查看物流</string>
-    <string name="orderHome_item_alertShopper_Btn">提醒商家发货</string>
-    <string name="orderHome_item_ToPay_Btn">去付款</string>
-    <string name="orderHome_item_ToGrade_Btn">去评价</string>
 
 </resources>

@@ -2,9 +2,7 @@ package com.zhanjixun.fragment;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
-import android.annotation.SuppressLint;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.os.Bundle;
@@ -13,21 +11,17 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.zhanjixun.R;
-import com.zhanjixun.adapter.OrderListAdapter;
 import com.zhanjixun.utils.ScreenUtil;
 
-@SuppressLint({ "ResourceAsColor", "CutPasteId" })
 public class OrderFragment extends Fragment {
 	private TextView t1;
 	private TextView t2;
@@ -39,13 +33,6 @@ public class OrderFragment extends Fragment {
 	private int offset = 0;// 动画图片偏移量
 	private int currIndex = 0;// 当前页卡编号
 	private int bmpW;// 动画图片宽度
-	private List<Map<String,Object>> listData;
-	
-	private ListView listView_all;
-	private ListView listView_waitSend;
-	private ListView listView_waitCargo;
-	private ListView listView_waitAppraise;
-	private ListView listView_waitpay;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -60,7 +47,6 @@ public class OrderFragment extends Fragment {
 		initData();
 	}
 
-	@SuppressLint({ "ResourceAsColor", "InflateParams" })
 	private void initViews() {
 		// TextView
 		t1 = (TextView) getActivity().findViewById(R.id.fragment_order_all);
@@ -94,53 +80,27 @@ public class OrderFragment extends Fragment {
 		pager = (ViewPager) getActivity().findViewById(
 				R.id.order_home_viewPager);
 		ArrayList<View> list = new ArrayList<View>();
-		View view = LayoutInflater.from(getActivity()).inflate(R.layout.order_home_listview_t1, null);
-		View view1 = LayoutInflater.from(getActivity()).inflate(R.layout.order_home_listview_t1, null);
-		View view2 = LayoutInflater.from(getActivity()).inflate(R.layout.order_home_listview_t1, null);
-		View view3 = LayoutInflater.from(getActivity()).inflate(R.layout.order_home_listview_t1, null);
-		View view4 = LayoutInflater.from(getActivity()).inflate(R.layout.order_home_listview_t1, null);
-		
-		listView_all = (ListView) view.findViewById(R.id.order_home_listView_T1);
-		listView_waitpay = (ListView) view1.findViewById(R.id.order_home_listView_T1);
-		listView_waitCargo = (ListView) view2.findViewById(R.id.order_home_listView_T1);
-		listView_waitSend = (ListView) view3.findViewById(R.id.order_home_listView_T1);
-		listView_waitAppraise = (ListView) view4.findViewById(R.id.order_home_listView_T1);
-		
-		
-		
-//		//对应的 ListView 的Adapter
-		//所有订单页面
-		listView_all.setAdapter( new 
-				OrderListAdapter(getActivity(),listData,0));
-//		//待付款页面
-		listView_waitpay.setAdapter(new 
-				OrderListAdapter(getActivity(),listData,OrderListAdapter.ORDER_PAY));
-//		//待发货页面
-		listView_waitSend.setAdapter(new 
-				OrderListAdapter(getActivity(),listData,OrderListAdapter.ORDER_SEND));
-		//待收货页面
-		listView_waitCargo.setAdapter(new 
-				OrderListAdapter(getActivity(),listData, OrderListAdapter.ORDER_CARGO));
-//		待评价页面
-		listView_waitAppraise.setAdapter(new 
-				OrderListAdapter(getActivity(),listData,OrderListAdapter.ORDER_APPRAIASE));
-		
-		//添加view到ViewPager里面
-		list.add(view);
-		list.add(view1);
-		list.add(view2);
-		list.add(view3);
-		list.add(view4);
+		TextView lv1 = new TextView(getActivity());
+		lv1.setText("第1页");
+		TextView lv2 = new TextView(getActivity());
+		lv2.setText("第2页");
+		TextView lv3 = new TextView(getActivity());
+		lv3.setText("第3页");
+		TextView lv4 = new TextView(getActivity());
+		lv4.setText("第4页");
+		TextView lv5 = new TextView(getActivity());
+		lv5.setText("第5页");
+
+		list.add(lv1);
+		list.add(lv2);
+		list.add(lv3);
+		list.add(lv4);
+		list.add(lv5);
+
 		pager.setAdapter(new MyPagerAdapter(list));
 		pager.setOnPageChangeListener(new MyOnPageChangeListener());
 	}
-    
-	/**
-	 * 初始化数据
-	 * @author Imissyou
-	 *
-	 * @return void
-	 */
+
 	private void initData() {
 
 	}
@@ -240,51 +200,31 @@ public class OrderFragment extends Fragment {
 		public void onPageScrolled(int arg0, float arg1, int arg2) {
 
 		}
-		
-		
-		
 	}
-	final static class ListViewHolder {
-		ListView order_listview_t1;
-		ListView order_listview_t2;
-		ListView order_listview_t3;
-		ListView order_listview_t4;
-		ListView order_listview_t5;
-	}
-    
-	/**
-	 * PagerAdpater
-	 * @author Imissyou
-	 * @Time  2015年11月23日
-	 *
-	 */
+
 	public class MyPagerAdapter extends PagerAdapter {
 		List<View> list = new ArrayList<View>();
 
-		public MyPagerAdapter(ArrayList<View> list2) {
-			this.list = list2;
+		public MyPagerAdapter(ArrayList<View> list) {
+			this.list = list;
 		}
 
-		//移动当前的Viewpage
 		@Override
 		public void destroyItem(ViewGroup container, int position, Object object) {
 			ViewPager pViewPager = ((ViewPager) container);
 			pViewPager.removeView(list.get(position));
 		}
 
-	    //判断是否由对象产生页面
 		@Override
 		public boolean isViewFromObject(View arg0, Object arg1) {
 			return arg0 == arg1;
 		}
 
-		//返回当前分页数
 		@Override
 		public int getCount() {
 			return list.size();
 		}
 
-		//返回一个对象该对象表明PagerAapter选择哪个对象放在当前的ViewPager
 		@Override
 		public Object instantiateItem(View arg0, int arg1) {
 			ViewPager pViewPager = ((ViewPager) arg0);

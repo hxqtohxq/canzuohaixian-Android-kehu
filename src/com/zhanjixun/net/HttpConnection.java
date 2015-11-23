@@ -1,17 +1,10 @@
 package com.zhanjixun.net;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Map;
-
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.util.Log;
 
 import com.zhanjixun.utils.HttpUtils;
 import com.zhanjixun.utils.LogUtils;
@@ -72,77 +65,4 @@ public class HttpConnection {
 		return result;
 	}
 
-	/**
-	 * 网络中获取文件
-	 * 
-	 * @param url
-	 * @param path
-	 * @return
-	 */
-	public static boolean sendGetToFile(String url, String path) {
-		HttpURLConnection httpURLConnection;
-		FileOutputStream out = null;
-		InputStream in = null;
-		try {
-			httpURLConnection = getDefultHttpURLConnection(url, "GET");
-			httpURLConnection.connect();
-			File file = new File(path);
-			if (200 == httpURLConnection.getResponseCode()) {
-				out = new FileOutputStream(file);
-				in = httpURLConnection.getInputStream();
-				int i = 0;
-				byte[] buffer = new byte[1024];
-				while ((i = in.read(buffer)) != -1) {
-					out.write(buffer, 0, i);
-				}
-				return true;
-			} else {
-				// 请求失败
-				return false;
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-			Log.v("1=", "error");
-			return false;
-		} finally {
-			try {
-				if (out != null)
-					out.close();
-				if (in != null)
-					in.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-	}
-
-	public static Bitmap sendGetToBitmap(String url) throws Exception {
-
-		HttpURLConnection httpURLConnection;
-		FileOutputStream out = null;
-		InputStream in = null;
-		try {
-			httpURLConnection = getDefultHttpURLConnection(url, "GET");
-			httpURLConnection.connect();
-			if (200 == httpURLConnection.getResponseCode()) {
-				in = httpURLConnection.getInputStream();
-				return BitmapFactory.decodeStream(in);
-			} else {
-				return null;
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-			throw new Exception(e);
-		} finally {
-			try {
-				if (out != null)
-					out.close();
-				if (in != null)
-					in.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-				throw new Exception(e);
-			}
-		}
-	}
 }

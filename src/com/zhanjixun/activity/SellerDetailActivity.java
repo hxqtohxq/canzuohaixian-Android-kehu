@@ -8,6 +8,7 @@ import com.zhanjixun.fragment.SellerDetailGoodFragment;
 import com.zhanjixun.fragment.SellerDetailSellerFragment;
 import com.zhanjixun.utils.ScreenUtil;
 
+import android.app.Activity;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.os.Bundle;

@@ -97,7 +97,7 @@ public class CarFragment extends Fragment {
 	private void addLine() {
 		View v = new View(getActivity());
 		LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
-				android.view.ViewGroup.LayoutParams.MATCH_PARENT, 1);
+				LayoutParams.MATCH_PARENT, 1);
 		v.setBackgroundColor(getActivity().getResources().getColor(
 				R.color.page_bg));
 		v.setLayoutParams(lp);

@@ -1,6 +1,7 @@
 package com.baidu.loc;
 
 import android.app.Application;
+import android.util.Log;
 import android.widget.TextView;
 
 import com.baidu.location.BDLocation;

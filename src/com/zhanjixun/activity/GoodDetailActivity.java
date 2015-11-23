@@ -23,7 +23,6 @@ public class GoodDetailActivity extends Activity implements OnItemClickListener 
 	private Spinner spinner1, spinner2;
 	ArrayAdapter<String> adapter1, adapter2;
 
-	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.category_good_detail);
