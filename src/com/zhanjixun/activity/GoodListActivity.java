@@ -14,9 +14,7 @@ import android.widget.TextView;
 
 import com.zhanjixun.R;
 import com.zhanjixun.adapter.GoodListAdapter;
-import com.zhanjixun.data.DC;
 import com.zhanjixun.interfaces.OnDataReturnListener;
-import com.zhanjixun.utils.LogUtils;
 import com.zhanjixun.views.LoadingDialog;
 
 public class GoodListActivity extends Activity implements OnDataReturnListener {

@@ -6,13 +6,12 @@ import java.util.Map;
 
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.util.Log;
 
 import com.zhanjixun.interfaces.OnDataReturnListener;
 import com.zhanjixun.utils.JsonUtil;
 import com.zhanjixun.utils.LogUtils;
 import com.zhanjixun.utils.ResultUtils;
-import com.zhanjixun.utils.StringUtils;
+import com.zhanjixun.utils.StringUtil;
 
 public class AsyncHttpTask extends AsyncTask<Object, Intent, String> {
 
@@ -33,7 +32,6 @@ public class AsyncHttpTask extends AsyncTask<Object, Intent, String> {
 
 	@Override
 	protected String doInBackground(Object... executeParams) {
-		Log.i("bb", "doinBcakground");
 		String url = (String) executeParams[0];
 		@SuppressWarnings("unchecked")
 		Map<String, String> parames = (Map<String, String>) executeParams[1];
@@ -51,9 +49,8 @@ public class AsyncHttpTask extends AsyncTask<Object, Intent, String> {
 	protected void onPostExecute(String result) {
 		super.onPostExecute(result);
 		LogUtils.d(result);
-		Log.i("bb", result);
 		Map<String, Object> resultMap = null;
-		if (StringUtils.isEmptyString(result)) {
+		if (StringUtil.isEmptyString(result)) {
 			resultMap = ResultUtils.serverErrorMap();
 		} else {
 			try {
