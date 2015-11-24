@@ -20,7 +20,7 @@ public class JsonUtil {
 			JSONObject json = new JSONObject(jsonStr);
 			Iterator<String> i = json.keys();
 			while (i.hasNext()) {
-				String key = (String) i.next();
+				String key = i.next();
 				String value = json.getString(key);
 				if (value.indexOf("{") == 0) {
 					map.put(key.trim(), getJosn(value));

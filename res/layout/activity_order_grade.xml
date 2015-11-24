@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/back_ground"
+    android:orientation="vertical" >
+    <!--Bar Title-->
+     <FrameLayout style="@style/TitleTheme" >
+          <TextView
+            style="@style/TitleLeftTheme"
+            android:clickable="true"
+            android:drawableLeft="@drawable/title_back"
+            android:drawableStart="@drawable/title_back"
+            android:onClick="onBack"
+            android:text="订单" />
+
+        <TextView
+            style="@style/TitleMiddleTheme"
+            android:text="发表评分" />
+    </FrameLayout>
+    <LinearLayout
+        android:background="@color/Title_transparency"
+        style="@style/order_grade_Linear"
+        android:layout_weight="20" >
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:id="@+id/order_grade_LinerLayout_Good"
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:clickable="true"
+            android:onClick="select"
+            android:background="@color/white"
+            android:layout_height="fill_parent">
+            <TextView
+                android:id="@+id/order_grade_title1"
+                android:text="@string/order_grade_good"
+                android:layout_width="fill_parent"
+                android:paddingTop="20dp"
+                android:gravity="center"
+                android:background="@color/white"
+                android:layout_weight="5"
+                android:layout_height="0dp"/>
+            <ImageView
+                android:id="@+id/order_grade_image1"
+                android:src="@drawable/happy2_9"
+                android:layout_width="fill_parent"
+                android:padding="10dp"
+                android:paddingLeft="40dp"
+                android:paddingRight="40dp"
+                android:layout_gravity="center"
+                android:layout_weight="5"
+                android:layout_height="0dp"/>
+        </LinearLayout>
+        <View
+            android:background="@color/back_ground"
+            android:layout_width="3dp"
+            android:layout_height="fill_parent"/>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:id="@+id/order_grade_LinerLayout_OK"
+            android:layout_width="0dp"
+             android:clickable="true"
+            android:onClick="select"
+            android:layout_weight="3"
+            android:layout_height="fill_parent">
+            <TextView
+                android:id="@+id/order_grade_title2"
+                android:text="@string/order_grade_ok"
+                android:layout_width="fill_parent"
+                android:paddingTop="20dp"
+                android:gravity="center"
+                android:background="@color/white"
+                android:layout_weight="5"
+                android:layout_height="0dp"/>
+            <ImageView
+                android:id="@+id/order_grade_image2"
+                android:src="@drawable/neutral2"
+                android:layout_width="fill_parent"
+                android:padding="10dp"
+                android:paddingLeft="40dp"
+                android:paddingRight="40dp"
+                android:layout_gravity="center"
+                android:layout_weight="5"
+                android:layout_height="0dp"/>
+
+        </LinearLayout>
+        <View
+            android:background="@color/back_ground"
+            android:layout_width="3dp"
+            android:layout_height="fill_parent"/>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:id="@+id/order_grade_LinerLayout_Bad"
+            android:clickable="true"
+            android:onClick="select"
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:layout_height="fill_parent">
+            <TextView
+                android:id="@+id/order_grade_title3"
+                android:text="@string/order_grade_bad"
+                android:layout_width="fill_parent"
+                android:paddingTop="20dp"
+                android:gravity="center"
+                android:background="@color/white"
+                android:layout_weight="5"
+                android:layout_height="0dp"/>
+            <ImageView
+                android:id="@+id/order_grade_image3"
+                android:src="@drawable/sad2"
+                android:layout_width="fill_parent"
+                android:padding="10dp"
+                android:paddingLeft="40dp"
+                android:paddingRight="40dp"
+                android:layout_gravity="center"
+                android:layout_weight="5"
+                android:layout_height="0dp"/>
+
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:background="@color/Title_transparency"
+        android:layout_marginTop="20dp"
+        style="@style/order_grade_Linear"
+        android:layout_weight="25" >
+
+        <ImageView
+            android:id="@+id/order_grade_orderImage"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="13dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="4dp"
+            android:layout_weight="3"
+            android:src="@drawable/order_image" />
+
+        <TextView
+            android:id="@+id/fragment_order_grade_orderDesc"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="8"
+            android:gravity="center|right"
+            android:text="@string/order_grade_orderDesc"
+            android:textSize="25sp" />
+    </LinearLayout>
+    <!-- 评分的Bar -->
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        style="@style/order_grade_Linear"
+        android:layout_weight="20"
+        android:background="@color/Title_transparency"
+        android:orientation="vertical" >
+        <!-- 商品评分的Bar -->
+
+        <LinearLayout
+            android:gravity="left|center_horizontal"
+            android:paddingLeft="10dp"
+            style="@style/order_grade_Linear" >
+
+            <!-- 足斤足称 -->
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="fill_parent"
+                android:paddingLeft="10dp"
+                android:gravity="center|left"
+                android:text="足斤足称:"
+                android:textSize="15sp" />
+
+            <RatingBar
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:onClick="intiRating"
+                android:id="@+id/order_grade_ratBar_zujzuc"
+                android:layout_width="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:paddingTop="10dp"
+                style="@style/roomRatingBar"
+                android:numStars="5"
+                android:layout_height="fill_parent"/>
+            <TextView
+                android:id="@+id/order_grade_ratBar_number1"
+                android:layout_width="80dp"
+                android:gravity="center"
+                android:text="4.5"
+                android:layout_height="fill_parent"/>
+        </LinearLayout>
+        <!-- 新鲜度 -->
+
+        <LinearLayout 
+            android:paddingLeft="10dp"
+            android:gravity="left"
+            style="@style/order_grade_Linear" >
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="fill_parent"
+                android:paddingLeft="10dp"
+                android:gravity="center|left"
+                android:text="新鲜度:"
+                android:textSize="15sp" />
+
+            <RatingBar
+                android:id="@+id/order_grade_ratBar_xinxdu"
+                style="@style/roomRatingBar"
+                android:onClick="intiRating"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_gravity="center_horizontal"
+                android:paddingTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:numStars="5"/>
+
+            <TextView
+                android:id="@+id/order_grade_ratBar_number2"
+                android:layout_width="80dp"
+                android:layout_height="fill_parent"
+                android:gravity="center"
+                android:text="4.5"/>
+        </LinearLayout>
+
+        <LinearLayout 
+            android:paddingLeft="10dp"
+            android:gravity="left"
+            style="@style/order_grade_Linear" >
+
+            <!-- 发货速度 -->
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="0dp"
+                android:gravity="center|left"
+                android:paddingLeft="10dp"
+                android:singleLine="true"
+                android:text="发货速度:"
+                android:textSize="15sp" />
+
+            <RatingBar
+                android:id="@+id/order_grade_ratBar_fahuosdu"
+                style="@style/roomRatingBar"
+                android:onClick="intiRating"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_gravity="center"
+                android:paddingTop="10dp"
+                 android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:numStars="5" />
+
+            <TextView
+                android:id="@+id/order_grade_ratBar_number3"
+                android:layout_width="80dp"
+                android:layout_height="fill_parent"
+                android:layout_gravity="right"
+                android:gravity="center"
+                android:text="4.5" />
+        </LinearLayout>
+
+    </LinearLayout>
+    <!-- 评分的提交 -->
+    <LinearLayout
+        android:orientation="vertical"
+        style="@style/order_grade_Linear"
+        android:background="@color/Title_transparency"
+        android:layout_weight="40"
+        >
+
+        <CheckBox
+            android:id="@+id/order_grade_checkBox_niming"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="left|center"
+            android:text="@string/order_grade_niming"
+            android:checked="false"
+            android:paddingLeft="10dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"/>
+
+        <Button
+            android:id="@+id/order_grade_ensureBtn_submit"
+            android:layout_marginBottom="40dp"
+            android:layout_width="120dp"
+            android:layout_height="40dp"
+            android:background="@drawable/mybutton"
+            android:gravity="center"
+            android:text="@string/order_grade_submit" />
+    </LinearLayout>
+
+</LinearLayout>

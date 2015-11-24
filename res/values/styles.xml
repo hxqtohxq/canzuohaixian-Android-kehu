@@ -1,8 +1,6 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <style name="AppBaseTheme" parent="Theme.AppCompat.Light"></style>
 
-    <style name="AppTheme" parent="AppBaseTheme"></style>
 
     <style name="TitleTheme">
         <item name="android:background">@color/theme</item>
@@ -84,7 +82,7 @@
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">40dp</item>
         <item name="android:textSize">15sp</item>
-        <item name="android:background">@color/transparency_edit</item>
+        <item name="android:background">@color/back_ground</item>
         <item name="android:layout_marginTop">10dp</item>
     </style>
     
@@ -93,6 +91,57 @@
         <item name="android:numStars">5</item>  
         <item name="android:minHeight">16dp</item>
         <item name="android:maxHeight">16dp</item>
+    </style>
+    
+    
+       <!--order_grade_Linear-->
+    <style name="order_grade_Linear">
+        <item name="android:gravity">center</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_weight">25</item>
+    </style>
+    
+    
+    <!--订单管理页面22222222222222222222222222222222222222222222222222-->
+    <!--LinearLayout-->
+    <style name="logistice_LinearLayout">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_weight">3</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@color/back_ground</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <!--Link-->
+    <style name="logistice_Link">
+        <item name="android:layout_marginLeft">30dp</item>
+        <item name="android:layout_marginRight">30dp</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@color/Link</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <!--Module LinearLayout-->
+    <style name="logistice_ModuleLinearLayout">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_weight">3</item>
+        <item name="android:gravity">center|left</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+    
+     <!---Module TexTView-->
+    <style name="logistice_ModuleTextView">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:layout_weight">3</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/text</item>
     </style>
 
 </resources>

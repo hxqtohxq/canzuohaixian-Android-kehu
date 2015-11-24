@@ -48,7 +48,7 @@
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="20dp"
                 android:layout_weight="1"
-                android:background="@color/transparency_edit"
+                android:background="#0e0000"
                 android:gravity="top|right"
                 android:text="@string/find_password" />
 
