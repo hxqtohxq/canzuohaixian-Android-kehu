@@ -8,6 +8,10 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+<<<<<<< HEAD
+=======
+import android.widget.ImageView;
+>>>>>>> origin/master
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -63,6 +67,7 @@ public class Order_logistics_information_Activity extends Activity implements On
 		init();
 		initIntentData();
 		//获取填充的数据
+<<<<<<< HEAD
 //	    pageData = getPageData();
 //	    listData = getListData();
 //		myAdapter = new Logistics_information_ItmeAdapter(this, listData);
@@ -70,13 +75,28 @@ public class Order_logistics_information_Activity extends Activity implements On
 //		//加载数据
 //		loadPage(pageData);
 //		listView.setAdapter(myAdapter);	
+=======
+	    pageData = getPageData();
+	    listData = getListData();
+		myAdapter = new Logistics_information_ItmeAdapter(this, listData);
+		
+		//加载数据
+		loadPage(pageData);
+		listView.setAdapter(myAdapter);
+			
+>>>>>>> origin/master
 	}
 
 
    private void initIntentData() {
 		Intent intent = getIntent();
 		String order_id = intent.getStringExtra("order_id");
+<<<<<<< HEAD
 		Toast.makeText(this, order_id, Toast.LENGTH_LONG).show();		
+=======
+		Toast.makeText(this, order_id, Toast.LENGTH_LONG).show();
+		
+>>>>>>> origin/master
 	}
 
 
@@ -90,6 +110,13 @@ public class Order_logistics_information_Activity extends Activity implements On
 		return null;
 	}
 
+<<<<<<< HEAD
+=======
+
+
+
+
+>>>>>>> origin/master
 	private void loadPage(Map<String, String> mapData) {
 		user_name.setText(mapData.get("name"));
 		user_phone.setText(mapData.get("phone"));

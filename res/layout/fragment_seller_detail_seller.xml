@@ -12,12 +12,13 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         android:orientation="horizontal" >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="16sp"
             android:text="@string/coast_where" />
 
         <!-- 商家靠岸点，应动态获取 -->
@@ -28,6 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:layout_marginStart="5dp"
+            android:textSize="16sp"
             android:text="@string/Null" />
     </LinearLayout>
 
@@ -46,12 +48,13 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:orientation="horizontal" >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="16sp"
             android:text="@string/book_return_time" />
 
         <!-- 商家靠岸时间，应动态获取 -->
@@ -62,6 +65,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:layout_marginStart="5dp"
+            android:textSize="16sp"
             android:text="@string/Null" />
     </LinearLayout>
 
@@ -80,12 +84,13 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:orientation="horizontal" >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="16sp"
             android:text="@string/catch_way" />
 
         <!-- 商家捕捞方式，应动态获取 -->
@@ -96,6 +101,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:layout_marginStart="5dp"
+            android:textSize="16sp"
             android:text="@string/Null" />
     </LinearLayout>
 
@@ -114,12 +120,13 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:orientation="horizontal" >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="16sp"
             android:text="@string/machine_power" />
 
         <!-- 主机功率，应动态获取 -->
@@ -130,6 +137,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:layout_marginStart="5dp"
+            android:textSize="16sp"
             android:text="@string/Null" />
     </LinearLayout>
 
@@ -148,12 +156,13 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:orientation="horizontal" >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="16sp"
             android:text="@string/seller_show" />
 
         <!-- 商家展示，应动态获取 -->

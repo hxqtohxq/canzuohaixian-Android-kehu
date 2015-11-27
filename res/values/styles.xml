@@ -16,6 +16,15 @@
         <item name="android:textColor">#ffffff</item>
     </style>
 
+    <style name="logistice_Link">
+        <item name="android:layout_marginLeft">30dp</item>
+        <item name="android:layout_marginRight">30dp</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@color/Link</item>
+        <item name="android:gravity">center</item>
+    </style>
+
     <style name="TitleLeftTheme">
         <item name="android:drawablePadding">10dp</item>
         <item name="android:paddingLeft">10dp</item>
@@ -32,14 +41,14 @@
         <item name="android:layout_gravity">end|center_vertical</item>
         <item name="android:paddingRight">10dp</item>
     </style>
-    <!-- 登陆注册11111111111111111111111111111111111111111111111111111 -->
+
     <style name="Login_LinearView">
         <item name="android:gravity">center</item>
         <item name="android:layout_height">0dp</item>
         <item name="android:orientation">vertical</item>
         <item name="android:layout_width">fill_parent</item>
     </style>
-    <!-- Text_Title -->
+
     <style name="Login_Title">
         <item name="android:textSize">30sp</item>
         <item name="android:text">@string/sea_food_Title</item>
@@ -47,26 +56,23 @@
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">50dp</item>
         <item name="android:gravity">center</item>
-        <item name="android:layout_marginTop">0dp</item>
         <item name="android:background">@color/Title_transparency</item>
     </style>
 
-    <!-- -Btn -->
     <style name="Login_Btn">
         <item name="android:layout_height">47dp</item>
         <item name="android:layout_width">0dp</item>
-        <item name="android:layout_weight">1</item>
         <item name="android:textColor">@color/login_Btn_text</item>
         <item name="android:background">@color/login_Btn</item>
     </style>
-    <!-- textView -->
+
     <style name="Login_Text">
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:background">@color/transparency</item>
         <item name="android:gravity">center</item>
     </style>
-    <!-- link -->
+
     <style name="Login_Link">
         <item name="android:layout_marginLeft">50dp</item>
         <item name="android:layout_marginRight">50dp</item>
@@ -75,57 +81,17 @@
         <item name="android:background">@color/black</item>
         <item name="android:gravity">center</item>
     </style>
-    <!-- EditView -->
+
     <style name="Login_Edit">
         <item name="android:layout_marginLeft">58dp</item>
         <item name="android:layout_marginRight">58dp</item>
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">40dp</item>
         <item name="android:textSize">15sp</item>
-        <item name="android:background">@color/back_ground</item>
+        <item name="android:background">@color/transparency_edit</item>
         <item name="android:layout_marginTop">10dp</item>
     </style>
-    
-    <style name="roomRatingBar" parent="@android:style/Widget.RatingBar">
-        <item name="android:progressDrawable">@drawable/room_rating_bar</item>
-        <item name="android:numStars">5</item>  
-        <item name="android:minHeight">16dp</item>
-        <item name="android:maxHeight">16dp</item>
-    </style>
-    
-    
-       <!--order_grade_Linear-->
-    <style name="order_grade_Linear">
-        <item name="android:gravity">center</item>
-        <item name="android:orientation">horizontal</item>
-        <item name="android:layout_width">fill_parent</item>
-        <item name="android:layout_height">0dp</item>
-        <item name="android:layout_weight">25</item>
-    </style>
-    
-    
-    <!--订单管理页面22222222222222222222222222222222222222222222222222-->
-    <!--LinearLayout-->
-    <style name="logistice_LinearLayout">
-        <item name="android:layout_width">fill_parent</item>
-        <item name="android:layout_height">0dp</item>
-        <item name="android:layout_weight">3</item>
-        <item name="android:gravity">center</item>
-        <item name="android:background">@color/back_ground</item>
-        <item name="android:orientation">vertical</item>
-    </style>
 
-    <!--Link-->
-    <style name="logistice_Link">
-        <item name="android:layout_marginLeft">30dp</item>
-        <item name="android:layout_marginRight">30dp</item>
-        <item name="android:layout_width">fill_parent</item>
-        <item name="android:layout_height">1dp</item>
-        <item name="android:background">@color/Link</item>
-        <item name="android:gravity">center</item>
-    </style>
-
-    <!--Module LinearLayout-->
     <style name="logistice_ModuleLinearLayout">
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">0dp</item>
@@ -133,8 +99,7 @@
         <item name="android:gravity">center|left</item>
         <item name="android:orientation">horizontal</item>
     </style>
-    
-     <!---Module TexTView-->
+
     <style name="logistice_ModuleTextView">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">fill_parent</item>
@@ -142,6 +107,30 @@
         <item name="android:gravity">center</item>
         <item name="android:textSize">15sp</item>
         <item name="android:textColor">@color/text</item>
+    </style>
+
+    <style name="order_grade_Linear">
+        <item name="android:gravity">center</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_weight">25</item>
+    </style>
+
+    <style name="roomRatingBar" parent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/room_rating_bar</item>
+        <item name="android:numStars">5</item>
+        <item name="android:minHeight">16dp</item>
+        <item name="android:maxHeight">16dp</item>
+    </style>
+
+    <style name="logistice_LinearLayout">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_weight">3</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@color/back_ground</item>
+        <item name="android:orientation">vertical</item>
     </style>
 
 </resources>

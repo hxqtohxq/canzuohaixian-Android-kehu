@@ -29,7 +29,7 @@ public class Appraisal {
 	//评分发货速度
 	private float conmment_speed;
 	//是否匿名
-	private boolean anonymous;
+	private int anonymous;
 	
 	
 	/**
@@ -116,13 +116,13 @@ public class Appraisal {
 	 * 是否匿名
 	 * @return anonymous
 	 */
-	public boolean isAnonymous() {
+	public int isAnonymous() {
 		return anonymous;
 	}
 	/**
 	 * @param anonymous 要设置的是否匿名
 	 */
-	public void setAnonymous(boolean anonymous) {
+	public void setAnonymous(int anonymous) {
 		this.anonymous = anonymous;
 	}
 

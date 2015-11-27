@@ -7,7 +7,6 @@
     <string name="main_order">订单</string>
     <string name="main_me">我的</string>
     <string name="logistics_goback_Title">订单</string>
-    <string name="edit">编辑</string>
     <string name="logistice_Title">订单详情</string>
     <string name="logistice_status_Title">卖家已发货</string>
     <string name="logistice_status_time1">还剩</string>
@@ -15,6 +14,7 @@
     <string name="logistice_status_time2">天</string>
     <string name="logistice_status_timeHour">11</string>
     <string name="logistice_status_time3">时自动确认</string>
+    <string name="edit">编辑</string>
     <string name="logistice_user_Title">收货人:</string>
     <string name="logistice_user_name">王王王</string>
     <string name="logistice_user_PhoneNumber">13763012723</string>
@@ -29,8 +29,6 @@
     <string name="logistice_money_Title1">(含运费:</string>
     <string name="logistice_money">10:00</string>
     <string name="logistice_money_Title2">)</string>
-
-    <!-- 订单评分 -->
     <string name="order_grade_orderDesc">写下你对该宝贝的评分吧！对其他人很有用</string>
     <string name="order_grade_good">好评</string>
     <string name="order_grade_ok">中评</string>
@@ -41,11 +39,8 @@
     <string name="order_grade_ratBar_badTitle">包装完整</string>
     <string name="order_grade_niming">匿名评价</string>
     <string name="order_grade_submit">发表评论</string>
-
-    <!-- Button -->
     <string name="logistice_ensureBtn">确认收货</string>
-    <!-- 登陆页面 -->
-    <string name="sea_food_Title">海鲜套餐</string>
+    <string name="sea_food_Title">海鲜餐桌</string>
     <string name="login_in">登陆</string>
     <string name="free_registation">注册</string>
     <string name="phone_email_username">手机号码</string>
@@ -58,7 +53,6 @@
     <string name="finding_Password">找回密码</string>
     <string name="finding_Password_input1">请输入新密码</string>
     <string name="finding_Password_input2">确认新密码</string>
-    <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="Null">null</string>
     <string name="Hot_In_This_Month">本月热门</string>
@@ -133,9 +127,6 @@
     <string name="all_goods">全部商品</string>
     <string name="goods">商品</string>
     <string name="seller">商家</string>
-    
-    
-     <!--物流详情-->
     <string name="logistice_state_informationTopTitle">物流详情</string>
     <string name="logistice_state_information_Title">物流状态:</string>
     <string name="logistice_state">运输中</string>
@@ -145,8 +136,6 @@
     <string name="logistice_IdNumber">03698455646</string>
     <string name="logistice_CallNumber_Title">官方电话:</string>
     <string name="logistice_CallNumber">1234567</string>
-    
-     <!--订单主页的item   其他页面也会引用-->
     <string name="orderHome_item_shoper">海阁号</string>
     <string name="orderHome_item_shoper_Allshop">查看该店的全部商品</string>
     <string name="orderHome_item_shopName">秋刀鱼</string>

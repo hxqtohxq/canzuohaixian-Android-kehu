@@ -57,17 +57,23 @@ public class HttpConnection {
 			throws MalformedURLException, IOException {
 		String result = null;
 		LogUtils.v(url);
+
 		HttpURLConnection connection = getDefultHttpURLConnection(url, "POST");
 		connection.setDoOutput(true);
-		connection.getOutputStream().write(
-				HttpUtils.getPOSTMethodParamesAsBytes(parames));
+		if (parames != null) {
+			LogUtils.v(parames.toString());
+			connection.getOutputStream().write(
+					HttpUtils.getPOSTMethodParamesAsBytes(parames));
+		}
 		connection.connect();
-		if (connection.getResponseCode() == 200) {
+		int responseCode = connection.getResponseCode();
+		LogUtils.d(responseCode + "");
+		if (responseCode == 200) {
 			result = HttpUtils.getResponseAsString(connection.getInputStream(),
 					"UTF-8");
 			LogUtils.v(result);
 		} else {
-			LogUtils.v("«Î«Û ß∞‹£∫" + connection.getResponseCode());
+			LogUtils.v("«Î«Û ß∞‹£∫" + responseCode);
 		}
 		return result;
 	}
@@ -87,7 +93,11 @@ public class HttpConnection {
 			httpURLConnection = getDefultHttpURLConnection(url, "GET");
 			httpURLConnection.connect();
 			File file = new File(path);
-			if (200 == httpURLConnection.getResponseCode()) {
+			int responseCode = httpURLConnection.getResponseCode();
+			if (200 == responseCode) {
+				if (!file.getParentFile().exists()) {
+					file.getParentFile().mkdirs();
+				}
 				out = new FileOutputStream(file);
 				in = httpURLConnection.getInputStream();
 				int i = 0;

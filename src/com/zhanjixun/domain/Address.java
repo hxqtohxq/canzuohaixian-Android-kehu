@@ -1,39 +1,49 @@
 package com.zhanjixun.domain;
 
 public class Address {
-	private String name;
-	private String phone;
+	/**
+	 * 收货地址ID
+	 */
+	private String id;
+	/**
+	 * 收货人
+	 */
+	private String consignee;
+
 	private String address;
-	private String mail;
+
+	private String phone;
+
+	private String zipCode;
 
 	/**
-	 * @return name
+	 * @return id
 	 */
-	public String getName() {
-		return name;
+	public String getId() {
+		return id;
 	}
 
 	/**
-	 * @param name
-	 *            要设置的 name
+	 * @param id
+	 *            要设置的 id
 	 */
-	public void setName(String name) {
-		this.name = name;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	/**
-	 * @return phone
+	 * @return consignee
 	 */
-	public String getPhone() {
-		return phone;
+	public String getConsignee() {
+		return consignee;
 	}
 
 	/**
-	 * @param phone
-	 *            要设置的 phone
+	 * @param consignee
+	 *            要设置的 consignee
 	 */
-	public void setPhone(String phone) {
-		this.phone = phone;
+	public void setConsignee(String consignee) {
+		this.consignee = consignee;
 	}
 
 	/**
@@ -52,17 +62,33 @@ public class Address {
 	}
 
 	/**
-	 * @return mail
+	 * @return phone
 	 */
-	public String getMail() {
-		return mail;
+	public String getPhone() {
+		return phone;
 	}
 
 	/**
-	 * @param mail
-	 *            要设置的 mail
+	 * @param phone
+	 *            要设置的 phone
 	 */
-	public void setMail(String mail) {
-		this.mail = mail;
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
+
+	/**
+	 * @return zipCode
+	 */
+	public String getZipCode() {
+		return zipCode;
+	}
+
+	/**
+	 * @param zipCode
+	 *            要设置的 zipCode
+	 */
+	public void setZipCode(String zipCode) {
+		this.zipCode = zipCode;
+	}
+
 }

@@ -3,8 +3,11 @@ package com.zhanjixun.domain;
 import java.util.Map;
 
 public class CarItem {
+
 	private Seller seller;
+
 	private Map<Good, Integer> goods;
+
 	private double finalPrice;
 
 	/**

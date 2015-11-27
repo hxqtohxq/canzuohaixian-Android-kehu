@@ -6,12 +6,11 @@
 
     <!-- 商铺评价页面 -->
 
-
-    <!-- 星星评价 -->
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="80dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="20dp"
         android:orientation="vertical" >
 
         <!-- 第一行(足斤足称) -->
@@ -24,32 +23,33 @@
             android:orientation="horizontal" >
 
             <TextView
-                android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="end"
                 android:text="@string/full_weight" />
 
             <RelativeLayout
-                android:layout_weight="2" 
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                >
+                android:layout_weight="2" >
+
                 <RatingBar
-                style="@style/roomRatingBar"
-                android:layout_centerInParent="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginLeft="10dp" />
+                    style="@style/roomRatingBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
+                    android:isIndicator="true" />
             </RelativeLayout>
 
             <TextView
-                android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginStart="10dp"
+                android:layout_weight="1"
                 android:text="@string/zero"
                 android:textColor="#FF5716" />
         </LinearLayout>
@@ -64,33 +64,35 @@
             android:orientation="horizontal" >
 
             <TextView
-                android:layout_marginLeft="13dp"
-                android:layout_marginStart="13dp"
-                android:layout_weight="1" 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="13dp"
+                android:layout_marginStart="13dp"
+                android:layout_weight="1"
                 android:gravity="end"
                 android:text="@string/fresh_degree" />
 
             <RelativeLayout
-                android:layout_weight="2" 
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                >
+                android:layout_weight="2" >
+
                 <RatingBar
-                style="@style/roomRatingBar"
-                android:layout_centerInParent="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginLeft="10dp" />
+                    style="@style/roomRatingBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
+                    android:isIndicator="true" />
             </RelativeLayout>
+
             <TextView
-                android:layout_weight="1" 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginStart="10dp"
+                android:layout_weight="1"
                 android:text="@string/zero"
                 android:textColor="#FF5716" />
         </LinearLayout>
@@ -105,32 +107,33 @@
             android:orientation="horizontal" >
 
             <TextView
-                android:layout_weight="1" 
-                android:gravity="end"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="end"
                 android:text="@string/send_speed" />
 
             <RelativeLayout
-                android:layout_weight="2" 
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                >
+                android:layout_weight="2" >
+
                 <RatingBar
-                style="@style/roomRatingBar"
-                android:layout_centerInParent="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginLeft="10dp" />
+                    style="@style/roomRatingBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
+                    android:isIndicator="true" />
             </RelativeLayout>
 
             <TextView
-                android:layout_weight="1" 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginStart="10dp"
+                android:layout_weight="1"
                 android:text="@string/zero"
                 android:textColor="#FF5716" />
         </LinearLayout>
@@ -141,13 +144,15 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
         android:orientation="horizontal" >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="6dp"
+            android:layout_marginRight="6dp"
             android:layout_weight="1"
             android:background="@drawable/orange_button"
             android:gravity="center"
@@ -158,6 +163,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="6dp"
+            android:layout_marginRight="6dp"
             android:layout_weight="1"
             android:background="@drawable/orange_button"
             android:gravity="center"
@@ -168,6 +175,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="6dp"
+            android:layout_marginRight="6dp"
             android:layout_weight="1"
             android:background="@drawable/orange_button"
             android:gravity="center"
@@ -189,25 +198,27 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:orientation="horizontal" >
 
         <CheckBox
-            android:paddingStart="5dp"
-            android:paddingLeft="5dp"
-            android:text="@string/only_check_comments_with_content"
-            android:textSize="14sp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
+            android:layout_height="wrap_content"
+            android:paddingEnd="0dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="0dp"
+            android:paddingStart="5dp"
+            android:text="@string/only_check_comments_with_content"
+            android:textSize="14sp" />
     </LinearLayout>
 
-     <View
+    <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:background="@color/light_color" />
-    
+
     <ListView
         android:id="@+id/id_seller_detail_comments_listview"
         android:layout_width="match_parent"

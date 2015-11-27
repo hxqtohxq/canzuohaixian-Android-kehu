@@ -5,73 +5,144 @@
     android:background="@drawable/login_backgroud"
     android:orientation="vertical" >
 
-    <!-- 登陆画面 -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" >
+
+        <FrameLayout
+            style="@style/TitleTheme"
+            android:layout_alignParentBottom="true"
+            android:background="#FFFFFF" >
+
+            <ImageView
+                style="@style/TitleLeftTheme"
+                android:onClick="onBack"
+                android:src="@drawable/goback" />
+
+            <TextView
+                style="@style/TitleMiddleTheme"
+                android:text="海鲜餐桌"
+                android:textColor="@color/theme" />
+        </FrameLayout>
+    </RelativeLayout>
 
     <LinearLayout
-        style="@style/Login_LinearView"
-        android:layout_height="fill_parent"
-        android:layout_marginBottom="120dp"
-        android:layout_marginTop="120dp" >
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#AAFFFFFF"
+        android:orientation="vertical"
+        android:paddingLeft="45dp"
+        android:paddingRight="45dp" >
 
-        <!-- 标题 -->
-
-        <TextView style="@style/Login_Title" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
 
         <LinearLayout
-            style="@style/Login_LinearView"
-            android:layout_weight="6"
-            android:background="@color/transparency" >
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical" >
 
             <EditText
-                android:id="@+id/login_InTelPhoneNumber"
-                style="@style/Login_Edit"
-                android:layout_marginTop="35dp"
-                android:ems="15"
+                android:id="@+id/login_In_TelPhoneNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#00FFFFFF"
+                android:hint="手机号码"
                 android:inputType="phone"
-                android:text="@string/phone_email_username" />
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:textColorHint="#000000"
+                android:textSize="15sp" />
 
-            <View style="@style/Login_Link" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#000000" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical" >
 
             <EditText
                 android:id="@+id/login_In_Password"
-                style="@style/Login_Edit"
-                android:ems="15"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#00FFFFFF"
+                android:hint="登录密码"
                 android:inputType="textPassword"
-                android:text="@string/password" />
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:textColorHint="#000000"
+                android:textSize="15sp" />
 
-            <View style="@style/Login_Link" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#000000" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" >
 
             <TextView
                 android:id="@+id/login_In_FindPasswordText"
-                android:layout_width="fill_parent"
-                android:layout_height="0dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="20dp"
-                android:layout_weight="1"
-                android:background="#0e0000"
-                android:gravity="top|right"
-                android:text="@string/find_password" />
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_centerInParent="true"
+                android:clickable="true"
+                android:onClick="onClick"
+                android:text="忘记密码？" />
+        </RelativeLayout>
 
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="0dp"
-                android:layout_marginBottom="-10dp"
-                android:layout_marginTop="45dp"
-                android:layout_weight="2"
-                android:orientation="horizontal" >
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5" />
+    </LinearLayout>
 
-                <Button
-                    android:id="@+id/login_in_DoLoginBtn"
-                    style="@style/Login_Btn"
-                    android:layout_marginRight="2dp"
-                    android:text="@string/login_in" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal" >
 
-                <Button
-                    android:id="@+id/Login_In_free_registationBtn"
-                    style="@style/Login_Btn"
-                    android:text="@string/free_registation" />
-            </LinearLayout>
-        </LinearLayout>
+        <Button
+            android:id="@+id/login_in_DoLoginBtn"
+            android:layout_width="0dp"
+            android:layout_height="45dp"
+            android:layout_weight="1"
+            android:background="@color/theme"
+            android:onClick="onClick"
+            android:text="登录"
+            android:textColor="#FFFFFF"
+            android:textSize="@dimen/title_text_size" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="45dp"
+            android:background="#AAFFFFFF" />
+
+        <Button
+            android:id="@+id/Login_In_free_registationBtn"
+            android:layout_width="0dp"
+            android:layout_height="45dp"
+            android:layout_weight="1"
+            android:background="@color/theme"
+            android:onClick="onClick"
+            android:text="注册"
+            android:textColor="#FFFFFF"
+            android:textSize="@dimen/title_text_size" />
     </LinearLayout>
 
 </LinearLayout>

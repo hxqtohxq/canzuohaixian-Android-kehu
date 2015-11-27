@@ -12,9 +12,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.Log;
@@ -28,7 +26,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.zhanjixun.R;
+import com.zhanjixun.activity.LoginActivity;
+import com.zhanjixun.adapter.MyPagerAdapter;
 import com.zhanjixun.adapter.OrderListAdapter;
+import com.zhanjixun.data.Constants;
 import com.zhanjixun.data.DC;
 import com.zhanjixun.domain.Order;
 import com.zhanjixun.interfaces.OnDataReturnListener;
@@ -52,10 +53,15 @@ public class OrderFragment extends Fragment implements OnDataReturnListener {
 	private ListView listView_waitAppraise;
 	private ListView listView_waitpay;
 	// 商品列表
-	private List<Order> Order_listData ;
+	private List<Order> Order_listData;
+	private String UserId;
 
 	// 获取用户所有订单的URL
-	private final String ALL_ORDER_URL = "fishshop/orders_getAllUserOrders.action";
+	public static String All_ORDER = "ORDER_GOODS";
+	public static String WAIT_PAY = "WAIT_PAY";
+	public static String WAIT_CARGO = "WAIT_CARGO";
+	public static String WAIT_SEND = "WAIT_SEND";
+	public static String APPRIAISE = "APPRIAISE";
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -66,15 +72,13 @@ public class OrderFragment extends Fragment implements OnDataReturnListener {
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-	    Order_listData = new ArrayList<Order>();
-	    initData();
+		Order_listData = new ArrayList<Order>();
+		
 		initViews();
-		
-		
+		initData();
 	}
 
 	@SuppressLint("InflateParams")
-	@SuppressWarnings("deprecation")
 	private void initViews() {
 		// TextView
 		t1 = (TextView) getActivity().findViewById(R.id.fragment_order_all);
@@ -129,19 +133,7 @@ public class OrderFragment extends Fragment implements OnDataReturnListener {
 				.findViewById(R.id.order_home_listView_T1);
 		listView_waitAppraise = (ListView) view4
 				.findViewById(R.id.order_home_listView_T1);
-        
-		
-		if (Order_listData != null) {
-			Log.v("laod", Order_listData.toString() +"");
-		    initListView();
-		}
-		/**
-		 * 加载页面信息 TODO
-		 */
-		// 对应的 ListView 的Adapter
-		// 所有订单页面
-		
-		
+
 		// 添加view到ViewPager里面
 		list.add(view);
 		list.add(view1);
@@ -152,35 +144,6 @@ public class OrderFragment extends Fragment implements OnDataReturnListener {
 		pager.setOnPageChangeListener(new MyOnPageChangeListener());
 	}
 
-	/**
-	 * @author Imissyou
-	 * @todo TODO
-	 *
-	 * @return void
-	 */
-	private void initListView() {
-		// TODO 自动生成的方法存根
-		Log.v("Order", "++++++++++++++++++++++++");
-		Log.v("Order", Order_listData.toString()+"MMMM");
-		OrderListAdapter Listadapter = new OrderListAdapter(getActivity(),
-				Order_listData);
-		Log.v("BBB", getActivity().toString());
-		listView_all.setAdapter(Listadapter);
-
-		// 待付款页面
-		listView_waitpay.setAdapter(new OrderListAdapter(getActivity(),
-				Order_listData));
-		// 待发货页面
-		listView_waitSend.setAdapter(new OrderListAdapter(getActivity(),
-				Order_listData));
-		// 待收货页面
-		listView_waitCargo.setAdapter(new OrderListAdapter(getActivity(),
-				Order_listData));
-		// 待评价页面
-		listView_waitAppraise.setAdapter(new OrderListAdapter(getActivity(),
-				Order_listData));
-
-	}
 
 	/**
 	 * 初始化数据
@@ -189,19 +152,24 @@ public class OrderFragment extends Fragment implements OnDataReturnListener {
 	 * @return void
 	 */
 	private void initData() {
-//		List<Map<String, Object>> mapList = new ArrayList<Map<String, Object>>();
-//		Map<String, Object> map = new HashMap<String, Object>();
-//		map.put("state", 0);
-//		mapList.add(map);
-//		this.listData = mapList;
-		Map<String, String> params = new HashMap<String, String>();
-		params.put("userId", "1");
-		params.put("pageInfo.indexPageNum", "1");
-		params.put("pageInfo.size", "2");
-		// params.put("pager.setCurrentItem",user.getPhone());
-		Log.d("initData", params.toString() + "");
-		DC.getInstance().getDatasFromServer("allOrder", ALL_ORDER_URL, params,
-				this);
+		this.UserId = Constants.user.getId();
+		//用户id为空跳回登录
+		if(UserId.equals(null) && UserId == null) {
+			Intent intent = new Intent(getActivity(),LoginActivity.class);
+			startActivity(intent);
+		} else {
+		Log.v("miss UserId------->", UserId);
+	    //请求所有订单页面
+		DC.getInstance().getAllOrder(All_ORDER, this,UserId );
+		//请求等待发货页面
+		DC.getInstance().getAllOrder(WAIT_CARGO, this, UserId);
+		//请求等等付款页面
+		DC.getInstance().getAllOrder(WAIT_PAY, this, UserId);
+		//请求等待发货页面
+		DC.getInstance().getAllOrder(WAIT_SEND, this, UserId);
+		//请求等待评分页面
+		DC.getInstance().getAllOrder(APPRIAISE, this, UserId);
+		}
 	}
 
 	private void setTextViewBg(int index) {
@@ -302,62 +270,6 @@ public class OrderFragment extends Fragment implements OnDataReturnListener {
 
 	}
 
-	/**
-	 * PagerAdpater
-	 * 
-	 * @author Imissyou
-	 * @Time 2015年11月23日
-	 *
-	 */
-	public class MyPagerAdapter extends PagerAdapter {
-		List<View> list = new ArrayList<View>();
-
-		public MyPagerAdapter(ArrayList<View> list2) {
-			this.list = list2;
-		}
-
-		// 移动当前的Viewpage
-		@Override
-		public void destroyItem(ViewGroup container, int position, Object object) {
-			ViewPager pViewPager = ((ViewPager) container);
-			pViewPager.removeView(list.get(position));
-		}
-
-		// 判断是否由对象产生页面
-		@Override
-		public boolean isViewFromObject(View arg0, Object arg1) {
-			return arg0 == arg1;
-		}
-
-		// 返回当前分页数
-		@Override
-		public int getCount() {
-			return list.size();
-		}
-
-		// 返回一个对象该对象表明PagerAapter选择哪个对象放在当前的ViewPager
-		@Override
-		public Object instantiateItem(View arg0, int arg1) {
-			ViewPager pViewPager = ((ViewPager) arg0);
-			pViewPager.addView(list.get(arg1));
-			return list.get(arg1);
-		}
-
-		@Override
-		public void restoreState(Parcelable arg0, ClassLoader arg1) {
-
-		}
-
-		@Override
-		public Parcelable saveState() {
-			return null;
-		}
-
-		@Override
-		public void startUpdate(View arg0) {
-		}
-	}
-
 	public class MyOnClickListener implements View.OnClickListener {
 		private int index = 0;
 
@@ -372,45 +284,21 @@ public class OrderFragment extends Fragment implements OnDataReturnListener {
 		}
 	}
 
-	/*
-	 * （非 Javadoc）
-	 * 
-	 * @todo
-	 * 
-	 * @see
-	 * com.zhanjixun.interfaces.OnDataReturnListener#onDataReturn(java.lang.
-	 * String, java.util.Map)
-	 */
 	@SuppressWarnings("unchecked")
 	@TargetApi(Build.VERSION_CODES.KITKAT)
 	@Override
 	public void onDataReturn(String taskTag, Map<String, Object> result) {
 		Log.v("OrderData", result.toString() + "mm");
-		Map<String, Object> map = (Map<String, Object>) result
-				.get("resultParm");
-		Log.v("BB", map.toString() + " b");
+		if (result != null || result.size() != 0 || result.isEmpty()) {
+			Map<String, Object> map = (Map<String, Object>) result
+					.get("resultParm");
+			Log.v("BB", map.toString() + " b");
 
-		List<Map<String, Object>> listData = (List<Map<String, Object>>) map
-				.get("ordersList");
-		setListData(listData);
-		Log.v("BB", listData.toString() + "");
-		// Map<String,Object> listMap = new HashMap<String,Object>();
-		// List<Order> orderlist = new ArrayList<Order>();
-		// for (int i = 0; i < listData.size(); i++ ) {
-		// Order order = new Order();
-		// listMap = listData.get(i);
-		// String state = listMap.get("state").toString();
-		// order.setStute(Integer.getInteger(state));
-		// order.setOrder_id(listMap.get("ordersId").toString());
-		// order.setUser_Id(listMap.get("userId").toString());
-		// order.setShopKeeperName(listMap.get("shopKeeperName").toString());
-		// order.setShopId(listMap.get("shopId").toString());
-		// order.setOrdersDetail( (List<Map<String, Object>>)
-		// listMap.get("ordersDetail"));
-		// order.setPostagePrice(listMap.get("postagePrice").toString());
-		// order.setTotalprice(listMap.get("totalprice").toString());
-		// orderlist.add(order);
-		// }
+			List<Map<String, Object>> listData = (List<Map<String, Object>>) map
+					.get("ordersList");
+			setListData(listData, taskTag);
+			Log.v("BB", listData.toString() + "");
+		}
 	};
 
 	/**
@@ -418,23 +306,24 @@ public class OrderFragment extends Fragment implements OnDataReturnListener {
 	 * 
 	 * @author Imissyou
 	 * @param listData
-	 * @todo TODO
+	 * @todo TODO 返回后无法加载页面
 	 *
 	 * @return List<Order>
 	 */
-	@SuppressWarnings({ "unchecked" })
-	private void setListData(List<Map<String, Object>> listData) {
+	@SuppressWarnings({ "unchecked", "unused" })
+	private void setListData(List<Map<String, Object>> listData, String taskTag) {
 		Map<String, Object> listMap = new HashMap<String, Object>();
 		List<Order> orderlist = new ArrayList<Order>();
 		for (int i = 0; i < listData.size(); i++) {
 			Order order = new Order();
 			listMap = listData.get(i);
-			Log.v("set", listMap.toString() +"bb");
+			Log.v("set", listMap.toString() + "bb");
 			String state = listMap.get("state").toString();
 			Log.v("state", state + "state");
 			order.setStute(Integer.parseInt(state));
 			order.setOrder_id(listMap.get("ordersId").toString());
-			order.setOrdersDetail((List<Map<String, Object>>) listMap.get("ordersDetail"));
+			order.setOrdersDetail((List<Map<String, Object>>) listMap
+					.get("ordersDetail"));
 			Log.v("listData", listMap.get("ordersDetail") + "null");
 			order.setUser_Id(listMap.get("userId").toString());
 			order.setShopKeeperName(listMap.get("shopKeeperName").toString());
@@ -443,8 +332,43 @@ public class OrderFragment extends Fragment implements OnDataReturnListener {
 			order.setTotalprice(listMap.get("totalprice").toString());
 			orderlist.add(order);
 		}
-		this.Order_listData = orderlist;
-		initListView();
-		Log.v("order_list", orderlist.toString() +"");
+		Log.d("listData---->", orderlist.toString()+"MMM");
+		if (orderlist == null && orderlist.size() == 0) {
+			return ;
+		}
+		Log.v("loadPage", orderlist.toString());
+		//自动加载指定页面的数据
+		switch (taskTag) {
+		case "ORDER_GOODS":
+			//所有订单页面
+			listView_all.setAdapter(new OrderListAdapter(getActivity(),
+					orderlist));
+			break;
+		case "WAIT_PAY":
+			// 待付款页面
+			listView_waitpay.setAdapter(new OrderListAdapter(getActivity(),
+					orderlist));
+			break;
+		case "WAIT_CARGO":
+			// 待发货页面
+			listView_waitCargo.setAdapter(new OrderListAdapter(getActivity(),
+					orderlist));
+			break;
+		case "WAIT_SEND":
+			// 待发货页面
+			listView_waitSend.setAdapter(new OrderListAdapter(getActivity(),
+					orderlist));
+			break;
+		case "APPRIAISE":
+			// 待评价页面
+			listView_waitAppraise.setAdapter(new OrderListAdapter(getActivity(),
+					orderlist));
+			break;
+		default:
+			listView_all.setAdapter(new OrderListAdapter(getActivity(),
+					orderlist));
+			break;
+		}		
+		Log.v("order_list", orderlist.toString() + "");
 	}
 }

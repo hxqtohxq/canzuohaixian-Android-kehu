@@ -52,7 +52,11 @@
         android:layout_marginBottom="8dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
+<<<<<<< HEAD
         android:background="@color/back_ground"
+=======
+        android:background="@color/transparency_Title"
+>>>>>>> origin/master
         android:layout_width="fill_parent"
         android:layout_height="3dp"/>
     <!--Item body -->
@@ -200,7 +204,11 @@
         android:layout_marginBottom="8dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
+<<<<<<< HEAD
         android:background="@color/back_ground"
+=======
+        android:background="@color/transparency_Title"
+>>>>>>> origin/master
         android:layout_width="fill_parent"
         android:layout_height="3dp"/>
 
@@ -300,7 +308,11 @@
         android:layout_marginBottom="8dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
+<<<<<<< HEAD
         android:background="@color/back_ground"
+=======
+        android:background="@color/transparency_Title"
+>>>>>>> origin/master
         android:layout_width="fill_parent"
         android:layout_height="3dp"/>
 

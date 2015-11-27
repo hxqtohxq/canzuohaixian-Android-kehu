@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:sc="http://schemas.android.com/apk/res/com.zhanjixun"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
@@ -29,34 +30,35 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="190dp"
+        android:layout_height="210dp"
         android:background="#99000000" >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@drawable/myfacebg"
             android:orientation="vertical" >
 
             <LinearLayout
-                android:layout_weight="2"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:gravity="center_horizontal" >
+                android:layout_weight="2"
+                android:gravity="center_horizontal"
+                android:paddingTop="20dp" >
 
-                <!-- 海鲜的头像(代码设置为圆形) -->
-
-                <ImageView
+                <com.zhanjixun.views.RoundImageView
                     android:id="@+id/id_category_good_detail_seafoodImage"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/ic_launcher" />
+                    android:layout_width="200px"
+                    android:layout_height="200px"
+                    android:src="@drawable/myface"
+                    sc:type="circle" />
             </LinearLayout>
 
             <LinearLayout
-                android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:layout_marginBottom="5dp"
+                android:layout_weight="1"
                 android:orientation="vertical" >
 
                 <!-- 海鲜学名 -->
@@ -67,7 +69,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="3dp"
-                    android:text="@string/Null"
+                    android:text="学名"
                     android:textColor="#ffffff"
                     android:textSize="16sp" />
                 <!-- 海鲜俗名 -->
@@ -78,7 +80,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="3dp"
-                    android:text="@string/Null"
+                    android:text="俗名"
                     android:textColor="#ffffff"
                     android:textSize="14sp" />
 
@@ -89,8 +91,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginBottom="5dp"
                     android:layout_marginTop="3dp"
-                    android:text="@string/Null"
+                    android:text="英文名"
                     android:textColor="#ffffff"
                     android:textSize="12sp" />
             </LinearLayout>
@@ -104,27 +107,29 @@
         android:orientation="horizontal" >
 
         <RelativeLayout
+            android:id="@+id/id_popup1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1" >
 
-            <!-- 养殖方式下拉框 -->
-
-            <Spinner
-                android:id="@+id/id_category_good_detail_spinnerBreedWay"
+            <TextView
+                android:id="@+id/id_breadWay_title"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:background="#F2F2F2"
-                android:gravity="center" />
+                android:gravity="center"
+                android:text="野生"
+                android:textSize="18sp" />
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:layout_toEndOf="@id/id_category_good_detail_spinnerBreedWay"
-                android:layout_toRightOf="@id/id_category_good_detail_spinnerBreedWay"
-                android:background="@drawable/spinner_arrow" />
+                android:layout_marginLeft="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_toEndOf="@id/id_breadWay_title"
+                android:layout_toRightOf="@id/id_breadWay_title"
+                android:src="@drawable/spinner_arrow" />
         </RelativeLayout>
 
         <View
@@ -135,26 +140,29 @@
             android:background="#F15719" />
 
         <RelativeLayout
+            android:id="@+id/id_popup2"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1" >
 
-            <!-- 排序方式下拉框 -->
-
-            <Spinner
-                android:id="@+id/id_category_good_detail_spinnerSortWay"
+            <TextView
+                android:id="@+id/id_sortWay_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:background="#F2F2F2" />
+                android:gravity="center"
+                android:text="综合排序"
+                android:textSize="18sp" />
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:layout_toEndOf="@id/id_category_good_detail_spinnerSortWay"
-                android:layout_toRightOf="@id/id_category_good_detail_spinnerSortWay"
-                android:background="@drawable/spinner_arrow" />
+                android:layout_marginLeft="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_toEndOf="@id/id_sortWay_title"
+                android:layout_toRightOf="@id/id_sortWay_title"
+                android:src="@drawable/spinner_arrow" />
         </RelativeLayout>
     </LinearLayout>
 
@@ -163,10 +171,10 @@
         android:layout_height="0.5dp"
         android:background="#FAAE90" />
 
-    <ListView
+    <com.zhanjixun.views.ReflashListView
         android:id="@+id/id_list_seller"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-    </ListView>
+        android:layout_height="match_parent" >
+    </com.zhanjixun.views.ReflashListView>
 
 </LinearLayout>

@@ -41,7 +41,7 @@
                     android:layout_centerInParent="true" >
 
                     <TextView
-                        android:id="@+id/id_credit_value"
+                        android:id="@+id/id_credit_value_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="8dp"

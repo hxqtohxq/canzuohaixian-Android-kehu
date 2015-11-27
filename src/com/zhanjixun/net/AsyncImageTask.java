@@ -8,6 +8,7 @@ import android.widget.ImageView;
 
 import com.zhanjixun.data.LoadImage;
 import com.zhanjixun.utils.BitmapUtils;
+import com.zhanjixun.utils.LogUtils;
 
 public class AsyncImageTask extends AsyncTask<String, Integer, Bitmap> {
 
@@ -21,8 +22,10 @@ public class AsyncImageTask extends AsyncTask<String, Integer, Bitmap> {
 			return;
 		this.view = view;
 		this.type = type;
-		Bitmap bitmap = LoadImage.getInstance().getBitmapFromLru(url);
+		Bitmap bitmap = LoadImage.getInstance().getBitmapFromLruCache(url);
+
 		if (null != bitmap) {
+			LogUtils.v(bitmap.toString());
 			bitmap = BitmapUtils.getBitmap(bitmap, view.getMeasuredWidth(),
 					view.getMeasuredHeight());
 			if (SET_BITMAP_BACKGROUND == type) {
@@ -37,18 +40,20 @@ public class AsyncImageTask extends AsyncTask<String, Integer, Bitmap> {
 
 	@Override
 	protected void onPreExecute() {
-		super.onPreExecute();
-		if (SET_BITMAP_BACKGROUND == type) {
-			// view.setBackgroundResource(R.drawable.empty_error);
-		} else {
-			// ((ImageView) view).setImageResource(R.drawable.empty_error);
-		}
+		// if (SET_BITMAP_BACKGROUND == type) {
+		// view.setBackgroundResource(R.drawable.empty_error);
+		// } else {
+		// ((ImageView) view).setImageResource(R.drawable.empty_error);
+		// }
 	}
 
 	@Override
 	protected Bitmap doInBackground(String... params) {
 		String urlStr = params[0];
-		return LoadImage.getInstance().getBitmap(urlStr);
+		LogUtils.v(urlStr);
+		Bitmap bitmap = LoadImage.getInstance().getBitmap(urlStr);
+
+		return bitmap;
 	}
 
 	@Override

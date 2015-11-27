@@ -24,7 +24,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_alignParentBottom="true"
-                android:background="@drawable/testfish" />
+                android:background="@drawable/home_fish" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -64,14 +64,6 @@
                     android:textSize="12sp" />
             </LinearLayout>
 
-            <include
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_marginBottom="10dp"
-                layout="@layout/sales" />
-            
             <LinearLayout
                 android:id="@+id/id_lowlayout"
                 android:layout_width="wrap_content"
@@ -98,7 +90,15 @@
                     android:textSize="16sp" />
             </LinearLayout>
 
-            
+            <include
+                android:id="@+id/id_sales"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/id_lowlayout"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginBottom="10dp"
+                layout="@layout/sales" />
         </RelativeLayout>
     </LinearLayout>
 

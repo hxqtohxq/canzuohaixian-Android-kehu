@@ -9,7 +9,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.provider.MediaStore;
-import android.provider.MediaStore.MediaColumns;
 
 import com.zhanjixun.data.Constants;
 
@@ -79,7 +78,7 @@ public class FileUtil {
 				return null;
 			}
 		}
-		String[] filePathColumn = { MediaColumns.DATA };
+		String[] filePathColumn = { MediaStore.Images.Media.DATA };
 		Cursor cursor = context.getContentResolver().query(selectedImage,
 				filePathColumn, null, null, null);
 		cursor.moveToFirst();

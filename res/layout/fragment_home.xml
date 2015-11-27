@@ -13,6 +13,7 @@
             android:drawableLeft="@drawable/location_normal"
             android:drawableStart="@drawable/location_normal"
             android:marqueeRepeatLimit="marquee_forever"
+            android:gravity="center"
             android:singleLine="true"
             android:text="位置信息" />
 
@@ -116,6 +117,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:layout_marginTop="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#FFFFFF"

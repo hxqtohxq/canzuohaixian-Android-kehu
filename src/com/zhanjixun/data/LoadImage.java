@@ -26,14 +26,11 @@ public class LoadImage {
 		int maxMemory = (int) Runtime.getRuntime().maxMemory();
 		int mCacheSize = maxMemory / 8;
 		lruCache = new LruCache<String, Bitmap>(mCacheSize) {
-			// 必须重写此方法，来测量Bitmap的大小
 			@Override
 			protected int sizeOf(String key, Bitmap value) {
 				return value.getRowBytes() * value.getHeight();
 			}
 		};
-		// asynNetLoadBitmap = new AsynNetLoadBitmap();
-		// asynDiskLoadBitmap = new AsynDiskLoadBitmap();
 	}
 
 	public static LoadImage getInstance() {
@@ -53,9 +50,8 @@ public class LoadImage {
 	 * @param path
 	 * @return
 	 */
-	public Bitmap getBitmapFromLru(String path) {
-		String key = StringUtil.MD5(path);
-		return lruCache.get(key);
+	public Bitmap getBitmapFromLruCache(String path) {
+		return lruCache.get(StringUtil.MD5(path));
 	}
 
 	/**

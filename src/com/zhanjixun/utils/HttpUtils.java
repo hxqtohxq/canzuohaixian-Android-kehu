@@ -55,7 +55,7 @@ public class HttpUtils {
 		if (parames != null && !parames.isEmpty()) {
 			for (Map.Entry<String, String> parm : parames.entrySet()) {
 				result.append(parm.getKey()).append("=")
-						.append(URLEncoder.encode(parm.getValue(), "Utf-8"));
+						.append(URLEncoder.encode(parm.getValue(), "UTF-8"));
 				result.append("&");
 			}
 			result.deleteCharAt(result.length() - 1);

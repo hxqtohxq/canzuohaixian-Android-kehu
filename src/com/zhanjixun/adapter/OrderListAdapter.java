@@ -1,14 +1,12 @@
 package com.zhanjixun.adapter;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import com.zhanjixun.R;
 import com.zhanjixun.activity.Order_Appraise_Activity;
 import com.zhanjixun.activity.Order_Logisitice_Activity;
-import com.zhanjixun.activity.Order_logistics_information_Activity;
+import com.zhanjixun.activity.Order_information_Activity;
 import com.zhanjixun.domain.Order;
 
 import android.annotation.SuppressLint;
@@ -19,7 +17,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.webkit.WebView.FindListener;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -44,7 +41,6 @@ public class OrderListAdapter extends BaseAdapter {
 	private String order_id;
 	private int order_statu;
 	private List<Map<String,Object>> orderDatail;
-	private Map<String,Object>  map = new HashMap<String,Object>();  
 
 	/**
 	 * 默认构造方法
@@ -113,20 +109,12 @@ public class OrderListAdapter extends BaseAdapter {
 	}
 
 	// 重写getView方法
-	@SuppressWarnings("unused")
 	@Override
 	public View getView(final int opsition, View convertView, ViewGroup arg2) {
 		ViewHolder viewHolder = null;
 		Order order = listData.get(opsition);
 		Log.v("order", order.toString() +"");
 		orderDatail = order.getOrdersDetail();
-//		Map<String,Object> map = null;
-//		for (int i = 0; orderDatail.get(i) == null ;i++ ) {
-//		    map = orderDatail.get(i);
-//			break;
-//		}
-//			map =ordersDetail.get(0);
-//		Log.v("map", map.toString() + "");
 		Log.v("list", orderDatail.toString() + "");
 		if (convertView == null) {
 			viewHolder = new ViewHolder();
@@ -167,12 +155,8 @@ public class OrderListAdapter extends BaseAdapter {
 		 viewHolder.shop_allmoney.setText(order.getTotalprice());
 		 //运费
 		 viewHolder.shop_logistics_money.setText(order.getPostagePrice());
-		
-//		 viewHolder.shop_number2.setText(order.get)
-		 //商品名
-//		 Log.v("map", map.toString() +"");
-//		 if (map != null) {
-		 Log.v("name", orderDatail.get(0).get("goodsName").toString() + "");
+		 Log.d("Orderdatali", orderDatail.toString());
+		 Log.v("name", orderDatail.get(0).get("goodsName").toString() + "11111");
 		 viewHolder.shop_goodname.setText(orderDatail.get(0).get("goodsName").toString());
 ////		//斤与条
 		 Log.v("unit", orderDatail.get(0).get("unit").toString() + "");
@@ -182,29 +166,27 @@ public class OrderListAdapter extends BaseAdapter {
 		 viewHolder.shop_size.setText(orderDatail.get(0).get("sku").toString());
 //		// 价格
 		 viewHolder.shop_goodprice.setText(orderDatail.get(0).get("price").toString());
-//		 }
-		// .get("ShopTitle").toString());
-		//
-		// viewHolder.shopTitle_name.setText(listData.get(opsition)
-		// .get("ShopTitle").toString());
-		/**
-		 * 加载图片
-		 */
+		 
 		// viewHolder.shop_Image.setImageBitmap(bm);
 		/**
 		 * 自动加载Btn 的值 加载Btn的Text
-		 * 
 		 */
 		Log.v("mm", opsition + "");
-		order_id = order.getOrder_id();
+		this.order_id = order.getOrder_id();
 		btnTitle = selcetBtnTitle(opsition);
 		Log.v("mm", "OK");
 		viewHolder.Btn.setText(btnTitle);
-		// viewHolder.Btn.invalidate();2
 		viewHolder.Btn.setOnClickListener(new OnClickListener() {
-			@Override
 			public void onClick(View view) {
 				doBtnClick(order_id , opsition);
+			}
+		});
+		//Item 的点击事件
+		convertView.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				Intent intent = new Intent(context,Order_information_Activity.class);
+				intent.putExtra("Order_id",order_id);
+				context.startActivity(intent);
 			}
 		});
 

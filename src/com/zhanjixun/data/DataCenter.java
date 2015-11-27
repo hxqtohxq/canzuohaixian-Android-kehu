@@ -13,4 +13,12 @@ public class DataCenter {
 				+ "/" + url, params);
 
 	}
+
+	public void getLogistics(String taskTag, Map<String, String> params,
+			OnDataReturnListener dataReturnListener) {
+		// http://www.kuaidi100.com/query?type=zhongtong&postid=719121392152&id=1
+		new AsyncHttpTask(taskTag, dataReturnListener).execute(
+				"http://www.kuaidi100.com/query", params);
+
+	}
 }

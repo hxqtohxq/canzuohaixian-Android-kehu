@@ -5,16 +5,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.zhanjixun.R;
-import com.zhanjixun.adapter.TimelineAdapter;
-
-import android.app.Activity;
 import android.os.Bundle;
-import android.view.View;
-import android.view.View.OnClickListener;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.zhanjixun.R;
+import com.zhanjixun.adapter.TimelineAdapter;
+import com.zhanjixun.base.BackActivity;
+import com.zhanjixun.data.DC;
+import com.zhanjixun.interfaces.OnDataReturnListener;
 
 /**
  * 物流详情页面
@@ -22,7 +23,7 @@ import android.widget.TextView;
  * @author Imissyou
  *
  */
-public class Order_Logisitice_Activity extends Activity {
+public class Order_Logisitice_Activity extends BackActivity implements OnDataReturnListener {
 
 	// 物流详情信息
 	private ListView listView;
@@ -41,7 +42,10 @@ public class Order_Logisitice_Activity extends Activity {
 	private Map<String, Object> mapData;
 
 	private TimelineAdapter timeAdapter;
+	private List<Map<String, Object>> mapdata;
 
+	
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -69,7 +73,8 @@ public class Order_Logisitice_Activity extends Activity {
 	 * 获取页面的信息 为数据填充做准备
 	 */
 	private Map<String, Object> getData() {
-
+        
+//		DC.getInstance().getLogistics(this, postid, type);
 		// Test
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("phone", "13763012723");
@@ -95,7 +100,14 @@ public class Order_Logisitice_Activity extends Activity {
 
 	private List<Map<String, Object>> getListData() {
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
-
+		Map<String,String> params = new HashMap<>();
+		String type = "zhongtong";
+		String postid =  "719121392152";
+		params.put("type", "zhongtong");
+		params.put("postid", "719121392152");
+//		DC.getInstance().getLogistics("Logistics", params, this);
+		DC.getInstance().getLogistics(this, postid, type);
+        
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("time", "2015-05-20 10:15");
 		map.put("title", "深圳龙华收件");
@@ -115,7 +127,19 @@ public class Order_Logisitice_Activity extends Activity {
 		map.put("time", "2015-05-25 9:30");
 		map.put("title", "已收取快件");
 		list.add(map);
+		
 		return list;
+	}
+
+	/* （非 Javadoc）
+	 * @todo
+	 *
+	 * @see com.zhanjixun.interfaces.OnDataReturnListener#onDataReturn(java.lang.String, java.util.Map)
+	 */
+	@Override
+	public void onDataReturn(String taskTag, Map<String, Object> result) {
+		this.mapdata = (List<Map<String, Object>>) result.get("data");
+		Log.v("mm", mapdata.isEmpty() + mapdata.toString() + "33");
 	}
 
 }

@@ -1,36 +1,30 @@
 package com.zhanjixun.activity;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
-
 import com.zhanjixun.R;
 import com.zhanjixun.data.Constants;
+import com.zhanjixun.domain.User;
 import com.zhanjixun.fragment.CarFragment;
 import com.zhanjixun.fragment.HomeFragment;
 import com.zhanjixun.fragment.MeFragment;
 import com.zhanjixun.fragment.OrderFragment;
-import com.zhanjixun.utils.GsonUtil;
 import com.zhanjixun.utils.LogUtils;
 import com.zhanjixun.utils.SPUtil;
 
 public class MainActivity extends FragmentActivity {
-
-	private HomeFragment homeFragment;
-	private CarFragment carFragment;
-	private OrderFragment orderFragment;
-	private MeFragment meFragment;
+	private String location;
+	private HomeFragment homeFragment = new HomeFragment();
+	private CarFragment carFragment = new CarFragment();
+	private OrderFragment orderFragment = new OrderFragment();
+	private MeFragment meFragment = new MeFragment();
 
 	private ImageButton imgBtn_home;
 	private ImageButton imgBtn_car;
@@ -41,43 +35,32 @@ public class MainActivity extends FragmentActivity {
 	private TextView text_car;
 	private TextView text_order;
 	private TextView text_me;
-	//private boolean locationState = false;
-	
-	public Handler hanler = new Handler(){
-		@Override
-		public void handleMessage(android.os.Message msg) {
-			switch (msg.what) {
-			case 1:
-				Log.i("bb", "receve a message");
-				updateAdvertisment(homeFragment.getViewPager());
-				break;
-			default:
-				break;
-			}
-		};
-	};
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		initView();
-		carTextData();
+		getUser();
 	}
 
-	private void carTextData() {
-		GsonUtil gson = new GsonUtil();
-		gson.put("sellerName", "海格号");
-		List<Map<String, String>> goodsList = new ArrayList<Map<String, String>>();
-		HashMap<String, String> map=new HashMap<String, String>();
-		map.put("goodName", "秋刀鱼");
-		map.put("goodPicUrl", "https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/logo_white_fe6da1ec.png");
-		map.put("goodSize", "中等大小");
-		map.put("goodPirce", "Y15.00/kg");
-		map.put("goodBuyNumber", "5");
-		goodsList.add(map);
-		gson.put("goodsList", goodsList);
-		SPUtil.saveString(getApplicationContext(), Constants.XML_CAR_FILE, Constants.XML_CAR_KEY, gson.toString());
+	private void getUser() {
+		Constants.user = new User();
+		String string = SPUtil.getString(this, Constants.XML_USER_FILE,
+				Constants.XML_USER_ID, "");
+		Constants.user.setId(string);
+		String string2 = SPUtil.getString(this, Constants.XML_USER_FILE,
+				Constants.XML_USER_PHONE, "");
+		Constants.user.setPhone(string2);
+		String string3 = SPUtil.getString(this, Constants.XML_USER_FILE,
+				Constants.XML_USER_PW, "");
+		Constants.user.setPassword(string3);
+		String string4 = SPUtil.getString(this, Constants.XML_USER_FILE,
+				Constants.XML_USER_NAME, "");
+		Constants.user.setName(string4);
+		String string5 = SPUtil.getString(this, Constants.XML_USER_FILE,
+				Constants.XML_USER_HEAD, "");
+		Constants.user.setHeadURL(string5);
 	}
 
 	private void initView() {
@@ -188,8 +171,29 @@ public class MainActivity extends FragmentActivity {
 			return;
 		}
 	}
-	
-	private void updateAdvertisment(ViewPager viewPager){
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+	@SuppressLint("HandlerLeak")
+	public Handler hanler = new Handler() {
+		public void handleMessage(android.os.Message msg) {
+			switch (msg.what) {
+			case 1:
+				updateAdvertisment(homeFragment.getViewPager());
+				break;
+			default:
+				break;
+			}
+		};
+	};
+
+	private void updateAdvertisment(ViewPager viewPager) {
 		viewPager.setCurrentItem(viewPager.getCurrentItem() + 1);
 	}
 }

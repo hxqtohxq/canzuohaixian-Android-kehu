@@ -16,11 +16,10 @@
             android:clickable="true"
             android:drawableLeft="@drawable/title_back"
             android:drawableStart="@drawable/title_back"
-            android:onClick="onBack"
-            android:text="首页" />
+            android:onClick="onBack" />
 
         <TextView
-            android:id="@+id/text_activity_goodlist_title"
+            android:id="@+id/text_sellerActivity_title"
             style="@style/TitleMiddleTheme"
             android:text="鱼类" />
     </FrameLayout>
@@ -42,7 +41,7 @@
                 android:layout_height="match_parent" >
 
                 <ImageView
-                    android:id="@+id/id_seller_image"
+                    android:id="@+id/id_seller_detail_sellerImage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
@@ -62,6 +61,7 @@
                     android:orientation="vertical" >
 
                     <!-- 卖家商铺或船家名字 -->
+
                     <TextView
                         android:id="@+id/id_seller_detail_sellerName"
                         android:layout_width="wrap_content"
@@ -77,6 +77,7 @@
                         android:orientation="horizontal" >
 
                         <!-- 口岸口 -->
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -86,7 +87,7 @@
                         <!-- 动态获取靠岸口 -->
 
                         <TextView
-                            android:id="@+id/id_coast_where"
+                            android:id="@+id/id_seller_detail_shipPort"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/Null"
@@ -109,7 +110,7 @@
                         <!-- 动态获取靠岸时间 -->
 
                         <TextView
-                            android:id="@+id/id_coast_when"
+                            android:id="@+id/id_seller_detail_returnTime"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/Null"
@@ -132,7 +133,7 @@
                         <!-- 动态获取信用指数 -->
 
                         <TextView
-                            android:id="@+id/id_credit_value"
+                            android:id="@+id/id_seller_detail_creditValue"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="bottom"
@@ -167,6 +168,7 @@
             android:layout_weight="1" >
 
             <!-- 商品 -->
+
             <TextView
                 android:id="@+id/id_seller_detail_goods"
                 android:layout_width="wrap_content"
@@ -182,8 +184,8 @@
             android:layout_width="0.5dp"
             android:layout_height="match_parent"
             android:layout_marginBottom="5dp"
-            android:layout_marginTop="5dp" 
-            android:background="#F2581A"/>
+            android:layout_marginTop="5dp"
+            android:background="#F2581A" />
 
         <RelativeLayout
             android:layout_width="0dp"
@@ -191,6 +193,7 @@
             android:layout_weight="1" >
 
             <!-- 评价 -->
+
             <TextView
                 android:id="@+id/id_seller_detail_comment"
                 android:layout_width="wrap_content"
@@ -206,14 +209,16 @@
             android:layout_width="0.5dp"
             android:layout_height="match_parent"
             android:layout_marginBottom="5dp"
-            android:layout_marginTop="5dp" 
-            android:background="#F2581A"/>
+            android:layout_marginTop="5dp"
+            android:background="#F2581A" />
+
         <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1" >
 
             <!-- 商家 -->
+
             <TextView
                 android:id="@+id/id_seller_detail_seller"
                 android:layout_width="wrap_content"
@@ -224,7 +229,6 @@
                 android:text="@string/seller"
                 android:textSize="18sp" />
         </RelativeLayout>
-        
     </LinearLayout>
 
     <ImageView
@@ -232,7 +236,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/link_180" />
-    
+
     <android.support.v4.view.ViewPager
         android:id="@+id/id_seller_detail_viewpager"
         android:layout_width="match_parent"

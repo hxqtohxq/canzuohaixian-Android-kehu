@@ -12,6 +12,12 @@ public class LoadingDialog {
 		progressDialog.setMessage("е§дкМгди...");
 	}
 
+	public LoadingDialog(Context context, String message) {
+		progressDialog = new ProgressDialog(context);
+		progressDialog.setMessage(message);
+		progressDialog.setCanceledOnTouchOutside(false);
+	}
+
 	public void show() {
 		if (progressDialog != null) {
 			progressDialog.show();

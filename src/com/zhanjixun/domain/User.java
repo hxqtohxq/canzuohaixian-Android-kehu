@@ -1,11 +1,54 @@
 package com.zhanjixun.domain;
 
+import android.content.Context;
+
+import com.zhanjixun.data.Constants;
+import com.zhanjixun.utils.SPUtil;
+
 public class User {
-	
+
+	private String id;
+
 	private String phone;
+
+	private String password;
+
 	private String name;
-	private String pic_url;
-	private String pic_bg_url;
+
+	private String headURL;
+
+	public static boolean saveUserInfo(Context context, User u) {
+		if (u == null) {
+			return false;
+		} else {
+			SPUtil.saveString(context, Constants.XML_USER_FILE,
+					Constants.XML_USER_ID, u.getId());
+			SPUtil.saveString(context, Constants.XML_USER_FILE,
+					Constants.XML_USER_PHONE, u.getPhone());
+			SPUtil.saveString(context, Constants.XML_USER_FILE,
+					Constants.XML_USER_PW, u.getPassword());
+			SPUtil.saveString(context, Constants.XML_USER_FILE,
+					Constants.XML_USER_NAME, u.getName());
+			SPUtil.saveString(context, Constants.XML_USER_FILE,
+					Constants.XML_USER_HEAD, u.getHeadURL());
+			return true;
+		}
+	}
+
+	/**
+	 * @return id
+	 */
+	public String getId() {
+		return id;
+	}
+
+	/**
+	 * @param id
+	 *            要设置的 id
+	 */
+	public void setId(String id) {
+		this.id = id;
+	}
 
 	/**
 	 * @return phone
@@ -20,6 +63,21 @@ public class User {
 	 */
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+
+	/**
+	 * @return password
+	 */
+	public String getPassword() {
+		return password;
+	}
+
+	/**
+	 * @param password
+	 *            要设置的 password
+	 */
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	/**
@@ -38,32 +96,18 @@ public class User {
 	}
 
 	/**
-	 * @return pic_url
+	 * @return headURL
 	 */
-	public String getPic_url() {
-		return pic_url;
+	public String getHeadURL() {
+		return headURL;
 	}
 
 	/**
-	 * @param pic_url
-	 *            要设置的 pic_url
+	 * @param headURL
+	 *            要设置的 headURL
 	 */
-	public void setPic_url(String pic_url) {
-		this.pic_url = pic_url;
+	public void setHeadURL(String headURL) {
+		this.headURL = headURL;
 	}
 
-	/**
-	 * @return pic_bg_url
-	 */
-	public String getPic_bg_url() {
-		return pic_bg_url;
-	}
-
-	/**
-	 * @param pic_bg_url
-	 *            要设置的 pic_bg_url
-	 */
-	public void setPic_bg_url(String pic_bg_url) {
-		this.pic_bg_url = pic_bg_url;
-	}
 }

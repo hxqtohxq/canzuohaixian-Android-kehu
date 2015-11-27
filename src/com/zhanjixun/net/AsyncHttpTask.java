@@ -1,16 +1,14 @@
 package com.zhanjixun.net;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
 import java.util.Map;
 
 import android.content.Intent;
 import android.os.AsyncTask;
 
+import com.zhanjixun.data.Constants;
 import com.zhanjixun.interfaces.OnDataReturnListener;
 import com.zhanjixun.utils.JsonUtil;
 import com.zhanjixun.utils.LogUtils;
-import com.zhanjixun.utils.ResultUtils;
 import com.zhanjixun.utils.StringUtil;
 
 public class AsyncHttpTask extends AsyncTask<Object, Intent, String> {
@@ -37,10 +35,8 @@ public class AsyncHttpTask extends AsyncTask<Object, Intent, String> {
 		Map<String, String> parames = (Map<String, String>) executeParams[1];
 		try {
 			return HttpConnection.doPOSTMethod(url, parames);
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+			LogUtils.e(e.toString());
 		}
 		return "";
 	}
@@ -48,17 +44,17 @@ public class AsyncHttpTask extends AsyncTask<Object, Intent, String> {
 	@Override
 	protected void onPostExecute(String result) {
 		super.onPostExecute(result);
-		LogUtils.d(result);
 		Map<String, Object> resultMap = null;
 		if (StringUtil.isEmptyString(result)) {
-			resultMap = ResultUtils.serverErrorMap();
+			resultMap = Constants.serverErrorMap;
 		} else {
 			try {
 				resultMap = JsonUtil.getJosn(result);
 			} catch (Exception e) {
-				resultMap = ResultUtils.jsonErrorMap();
+				resultMap = Constants.jsonErrorMap;
 			}
 		}
+		LogUtils.v(resultMap.toString());
 		this.dataReturnListener.onDataReturn(taskTag, resultMap);
 	}
 }

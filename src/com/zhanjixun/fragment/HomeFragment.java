@@ -2,14 +2,8 @@ package com.zhanjixun.fragment;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
-import com.zhanjixun.R;
-import com.zhanjixun.activity.GoodDetailActivity;
-import com.zhanjixun.activity.GoodListActivity;
-import com.zhanjixun.activity.MainActivity;
-import com.zhanjixun.adapter.AdvertisePagerAdapter;
-
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -28,7 +22,28 @@ import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
 
-public class HomeFragment extends Fragment implements OnClickListener {
+import com.baidu.loc.LocationApplication;
+import com.baidu.location.LocationClient;
+import com.baidu.location.LocationClientOption;
+import com.baidu.location.LocationClientOption.LocationMode;
+import com.baidu.location.b.b;
+import com.baidu.location.b.e;
+import com.zhanjixun.R;
+import com.zhanjixun.activity.GoodDetailActivity;
+import com.zhanjixun.activity.GoodListActivity;
+import com.zhanjixun.activity.MainActivity;
+import com.zhanjixun.adapter.AdvertisePagerAdapter;
+import com.zhanjixun.data.DC;
+import com.zhanjixun.data.IC;
+import com.zhanjixun.data.TaskTag;
+import com.zhanjixun.domain.GoodItemBean;
+import com.zhanjixun.interfaces.OnDataReturnListener;
+import com.zhanjixun.utils.JsonResultUtil;
+import com.zhanjixun.views.LoadingDialog;
+import com.zhanjixun.views.MessageDialog;
+
+public class HomeFragment extends Fragment implements OnClickListener,
+		OnDataReturnListener {
 	private TextView locTv;
 	private TextView fishTv;
 	private TextView shrimpTv;
@@ -38,17 +53,13 @@ public class HomeFragment extends Fragment implements OnClickListener {
 	private TextView ginsengTv;
 	private TextView packTv;
 	private TextView othersTv;
-	
-	private View hotItem1;
-	private View hotItem2;
-	private View hotItem3;
-	private View hotItem4;
-	private View hotItem5;
-	private View hotItem6;
+
+	private View hotItem[] = new View[6];
 
 	private LinearLayout points;
 	private static ViewPager viewPager;
-	private int[] images = { R.drawable.home_ad_image1, R.drawable.home_ad_image2, R.drawable.home_ad_image3,
+	private int[] images = { R.drawable.home_ad_image1,
+			R.drawable.home_ad_image2, R.drawable.home_ad_image3,
 			R.drawable.home_ad_image4 };
 	private List<ImageView> imageViews;
 	private AdvertisePagerAdapter myAdapter;
@@ -57,23 +68,22 @@ public class HomeFragment extends Fragment implements OnClickListener {
 	// 线程标志
 	private boolean isStop = false;
 	private MyPagerListener myListener;
-	private MyThread adThread;
+	private AdvertiseThread adThread;
 	private Handler handler;
-	private Context context;
+	private LoadingDialog dialog;
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
 		return inflater.inflate(R.layout.fragment_home, container, false);
 	}
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		Log.i("bb", "initing HomeFragment--------");
 		initViews();
 		location();
 		initAdvertiseView();
-
 	}
 
 	@Override
@@ -81,20 +91,20 @@ public class HomeFragment extends Fragment implements OnClickListener {
 		isStop = false;
 		super.onStart();
 	}
-	
+
 	@Override
 	public void onResume() {
-		//重回界面时图片继续滚动
+		// 重回界面时图片继续滚动
 		isStop = false;
 		super.onResume();
 	}
-	
+
 	@Override
 	public void onStop() {
-		//切换到其他页面是暂停进程，停止滚动
+		// 切换到其他页面是暂停进程，停止滚动
 		isStop = true;
 		adThread.pauseThread();
-		Log.i("cc","stop the ad thread------");
+		Log.i("cc", "stop the ad thread------");
 		super.onStop();
 	}
 
@@ -103,25 +113,13 @@ public class HomeFragment extends Fragment implements OnClickListener {
 		fishTv = (TextView) getActivity().findViewById(R.id.text_home_fish);
 		shrimpTv = (TextView) getActivity().findViewById(R.id.text_home_shrimp);
 		cradTv = (TextView) getActivity().findViewById(R.id.text_home_crad);
-		shellfishTv = (TextView) getActivity().findViewById(R.id.text_home_shellfish);
+		shellfishTv = (TextView) getActivity().findViewById(
+				R.id.text_home_shellfish);
 		squidTv = (TextView) getActivity().findViewById(R.id.text_home_squid);
-		ginsengTv = (TextView) getActivity().findViewById(R.id.text_home_ginseng);
+		ginsengTv = (TextView) getActivity().findViewById(
+				R.id.text_home_ginseng);
 		packTv = (TextView) getActivity().findViewById(R.id.text_home_pack);
 		othersTv = (TextView) getActivity().findViewById(R.id.text_home_others);
-		
-		hotItem1 = getActivity().findViewById(R.id.hot_item1);
-		hotItem2 = getActivity().findViewById(R.id.hot_item2);
-		hotItem3 = getActivity().findViewById(R.id.hot_item3);
-		hotItem4 = getActivity().findViewById(R.id.hot_item4);
-		hotItem5 = getActivity().findViewById(R.id.hot_item5);
-		hotItem6 = getActivity().findViewById(R.id.hot_item6);
-		
-		hotItem1.setOnClickListener(new HotItemClickListener());
-		hotItem2.setOnClickListener(new HotItemClickListener());
-		hotItem3.setOnClickListener(new HotItemClickListener());
-		hotItem4.setOnClickListener(new HotItemClickListener());
-		hotItem5.setOnClickListener(new HotItemClickListener());
-		hotItem6.setOnClickListener(new HotItemClickListener());
 
 		points = (LinearLayout) getActivity().findViewById(R.id.home_points);
 		viewPager = (ViewPager) getActivity().findViewById(R.id.home_viewpager);
@@ -134,9 +132,9 @@ public class HomeFragment extends Fragment implements OnClickListener {
 		ginsengTv.setOnClickListener(this);
 		othersTv.setOnClickListener(this);
 
+		initMonthHotViews();
 	}
 
-	@Override
 	public void onClick(View v) {
 		int id = v.getId();
 		Intent intent = new Intent(getActivity(), GoodListActivity.class);
@@ -156,7 +154,6 @@ public class HomeFragment extends Fragment implements OnClickListener {
 		case R.id.text_home_squid:
 			intent.putExtra("kind", GoodListActivity.SQUID);
 			break;
-
 		case R.id.text_home_ginseng:
 			intent.putExtra("kind", GoodListActivity.GINSENG);
 			break;
@@ -170,36 +167,43 @@ public class HomeFragment extends Fragment implements OnClickListener {
 	}
 
 	private void location() {
-//		new Thread() {
-//			@Override
-//			public void run() {
-//				locTv.setText("定位中...");
-//				LocationClient locClient = ((LocationApplication) (getActivity().getApplication())).mLocationClient;
-//				LocationClientOption option = new LocationClientOption();
-//				option.setLocationMode(LocationMode.Hight_Accuracy);// 可选，默认高精度，设置定位模式，高精度，低功耗，仅设备
-//				option.setCoorType("gcj02");// 可选，默认gcj02，设置返回的定位结果坐标系，
-//				option.setScanSpan(1000);// 可选，默认0，即仅定位一次，设置发起定位请求的间隔需要大于等于1000ms才是有效的
-//				option.setIsNeedAddress(true);// 可选，设置是否需要地址信息，默认不需要
-//				option.setOpenGps(true);// 可选，默认false,设置是否使用gps
-//				option.setLocationNotify(true);// 可选，默认false，设置是否当gps有效时按照1S1次频率输出GPS结果
-//				option.setIgnoreKillProcess(false);// 可选，默认true，定位SDK内部是一个SERVICE，并放到了独立进程，设置是否在stop的时候杀死这个进程，默认不杀死
-//
-//				locClient.setLocOption(option);
-//				((LocationApplication) getActivity().getApplication()).mLocationResult = locTv;
-//				locClient.start();
-//			}
-//		}.start();
+		MainActivity activity = (MainActivity) getActivity();
+		String location = activity.getLocation();
+		if (location != null) {
+			locTv.setText(location);
+		} else {
+			new Thread() {
+				public void run() {
+					locTv.setText("定位中...");
+					LocationClient locClient = ((LocationApplication) (getActivity()
+							.getApplication())).mLocationClient;
+					LocationClientOption option = new LocationClientOption();
+					option.setLocationMode(LocationMode.Hight_Accuracy);// 可选，默认高精度，设置定位模式，高精度，低功耗，仅设备
+					option.setCoorType("gcj02");// 可选，默认gcj02，设置返回的定位结果坐标系，
+					option.setScanSpan(1000);// 可选，默认0，即仅定位一次，设置发起定位请求的间隔需要大于等于1000ms才是有效的
+					option.setIsNeedAddress(true);// 可选，设置是否需要地址信息，默认不需要
+					option.setOpenGps(true);// 可选，默认false,设置是否使用gps
+					option.setLocationNotify(true);// 可选，默认false，设置是否当gps有效时按照1S1次频率输出GPS结果
+					option.setIgnoreKillProcess(false);// 可选，默认true，定位SDK内部是一个SERVICE，并放到了独立进程，设置是否在stop的时候杀死这个进程，默认不杀死
 
+					locClient.setLocOption(option);
+					((LocationApplication) getActivity().getApplication()).mLocationResult = locTv;
+					((LocationApplication) getActivity().getApplication()).activity = (MainActivity) getActivity();
+					locClient.start();
+				}
+			}.start();
+		}
 	}
 
-	//初始化广告滚动图片
+	// 初始化广告滚动图片
 	private void initAdvertiseView() {
 		imageViews = new ArrayList<ImageView>();
 		View point;
 		LayoutParams params;
 		for (int i = 0; i < images.length; i++) {
 			// 设置广告图
-			ImageView image = new ImageView(getActivity().getApplicationContext());
+			ImageView image = new ImageView(getActivity()
+					.getApplicationContext());
 			image.setScaleType(ScaleType.FIT_XY);
 			image.setImageResource(images[i]);
 			imageViews.add(image);
@@ -217,27 +221,27 @@ public class HomeFragment extends Fragment implements OnClickListener {
 		myListener = new MyPagerListener();
 		viewPager.setOnPageChangeListener(myListener);
 		// 取中间数来作为起始位置
-		int index = (Integer.MAX_VALUE / 2) - (Integer.MAX_VALUE / 2 % images.length);
+		int index = (Integer.MAX_VALUE / 2)
+				- (Integer.MAX_VALUE / 2 % images.length);
 		System.out.println("index:" + index);
 		// 用来触发监听器
 		viewPager.setCurrentItem(index);
 		points.getChildAt(pointIndex).setEnabled(true);
-		
+
 		MainActivity mainActivity = (MainActivity) getActivity();
 		handler = mainActivity.hanler;
-		adThread = new MyThread() {
+		adThread = new AdvertiseThread() {
 			@Override
 			public void run() {
 				while (!isStop) {
 					SystemClock.sleep(2000);
 					handler.sendEmptyMessage(1);
-					Log.i("bb","send a message");
 				}
 			}
 		};
 		adThread.start();
 	}
-	
+
 	public ViewPager getViewPager() {
 		return viewPager;
 	}
@@ -264,51 +268,94 @@ public class HomeFragment extends Fragment implements OnClickListener {
 		}
 
 	}
-	
-	class HotItemClickListener implements View.OnClickListener{
+
+	class HotItemClickListener implements View.OnClickListener {
+		private GoodItemBean good;
+
+		public HotItemClickListener(GoodItemBean good) {
+			this.good = good;
+		}
 
 		@Override
 		public void onClick(View v) {
-			String name;
-			int id = v.getId();
-			Intent intent = new Intent(getContext(),GoodDetailActivity.class);
-			switch (id) {
-			case R.id.hot_item1:
-				name = getHotItemPopularName(hotItem1);
-				intent.putExtra("title", name);
-				break;
-			case R.id.hot_item2:
-				name = getHotItemPopularName(hotItem2);
-				intent.putExtra("title", name);
-				break;
-			case R.id.hot_item3:
-				name = getHotItemPopularName(hotItem3);
-				intent.putExtra("title", name);
-				break;
-			case R.id.hot_item4:
-				name = getHotItemPopularName(hotItem4);
-				intent.putExtra("title", name);
-				break;
-			case R.id.hot_item5:
-				name = getHotItemPopularName(hotItem5);
-				intent.putExtra("title", name);
-				break;
-			case R.id.hot_item6:
-				name = getHotItemPopularName(hotItem6);
-				intent.putExtra("title", name);
-				break;
-			default:
-				break;
-			}
+			Intent intent = new Intent(HomeFragment.this.getActivity(),
+					GoodDetailActivity.class);
+			intent.putExtra("iamgeURL", good.getImageURL());
+			intent.putExtra("categoryId", good.getCategoryId());
+			intent.putExtra("title", good.getCategorySimpleName());
+			intent.putExtra("academicName", good.getCategoryAcademicName());
+			intent.putExtra("EnglishName", good.getCategoryEnglishName());
 			startActivity(intent);
 		}
-		
 	}
-	
-	//得到热门商品的俗名
-	private String getHotItemPopularName(View view){
-		TextView textView = (TextView) view.findViewById(R.id.id_hot_item_seafoodPopularName);
-		String name = textView.getText().toString();
-		return name;
+
+	private void initMonthHotViews() {
+		hotItem[0] = getActivity().findViewById(R.id.hot_item1);
+		hotItem[1] = getActivity().findViewById(R.id.hot_item2);
+		hotItem[2] = getActivity().findViewById(R.id.hot_item3);
+		hotItem[3] = getActivity().findViewById(R.id.hot_item4);
+		hotItem[4] = getActivity().findViewById(R.id.hot_item5);
+		hotItem[5] = getActivity().findViewById(R.id.hot_item6);
+
+		dialog = new LoadingDialog(getActivity());
+		dialog.show();
+		DC.getInstance().getHotItems(this);
 	}
+
+	private void initMonthHotData(List<GoodItemBean> goods) {
+		for (int i = 0; i < goods.size(); i++) {
+			GoodItemBean good = goods.get(i);
+			ImageView imag = (ImageView) hotItem[i]
+					.findViewById(R.id.id_hotImage);
+			TextView simpleName = (TextView) hotItem[i]
+					.findViewById(R.id.id_hot_item_seafoodPopularName);
+			TextView academicName = (TextView) hotItem[i]
+					.findViewById(R.id.id_hot_item_seafoodScientificName);
+			TextView englishName = (TextView) hotItem[i]
+					.findViewById(R.id.id_hot_item_seafoodEnglishName);
+			TextView sellNumber = (TextView) hotItem[i]
+					.findViewById(R.id.id_hot_item_salesValue);
+			simpleName.setText(good.getCategorySimpleName());
+			academicName.setText(good.getCategoryAcademicName());
+			englishName.setText(good.getCategoryEnglishName());
+			sellNumber.setText(good.getTotalSellerNumber());
+			// 加载图片
+			IC.getInstance().setBackground(good.getImageURL(), imag);
+			hotItem[i].setOnClickListener(new HotItemClickListener(good));
+		}
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public void onDataReturn(String taskTag, Map<String, Object> result) {
+		dialog.dismiss();
+		if (JsonResultUtil.state(result)) {
+			if (taskTag.equals(TaskTag.MONTH_HOT)) {
+				Map<String, Object> parm = (Map<String, Object>) result
+						.get("resultParm");
+				List<Map<String, Object>> categoryList = (List<Map<String, Object>>) parm
+						.get("categoryList");
+				List<GoodItemBean> goods = new ArrayList<GoodItemBean>();
+				for (Map<String, Object> category : categoryList) {
+					GoodItemBean bean = new GoodItemBean();
+					bean.setCategoryId((String) category.get("categoryId"));
+					bean.setCategorySimpleName((String) category
+							.get("categorySimpleName"));
+					bean.setCategoryAcademicName((String) category
+							.get("categoryAcademicName"));
+					bean.setCategoryEnglishName((String) category
+							.get("categoryEnglishName"));
+					bean.setTotalSellerNumber((String) category
+							.get("totalSellNumber"));
+					bean.setImageURL((String) category.get("fishPhoto"));
+					goods.add(bean);
+				}
+				initMonthHotData(goods);
+			}
+		} else {
+			new MessageDialog(getActivity(), JsonResultUtil.message(result))
+					.show();
+		}
+	}
+
 }

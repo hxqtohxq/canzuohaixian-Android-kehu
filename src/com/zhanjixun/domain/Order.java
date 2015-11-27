@@ -8,31 +8,31 @@ import java.util.Map;
 
 /**
  * @author Imissyou
- * @Time  2015年11月24日
+ * @Time 2015年11月24日
  *
  */
 public class Order {
-	//订单ID
+	// 订单ID
 	private String order_id;
-	//用户ID
+	// 用户ID
 	private String user_Id;
-	//订单总价
+	// 订单总价
 	private String totalprice;
-	//订单状态
+	// 订单状态
 	private int stute;
-	//店铺名
+	// 店铺名
 	private String shopKeeperName;
-	//运费
+	// 运费
 	private String postagePrice;
-	//商店ID
+	// 商店ID
 	private String shopId;
-	
-	
-	//商店List
-	private List<Map<String,Object>> ordersDetail;
+
+	// 商店List
+	private List<Map<String, Object>> ordersDetail;
 
 	/**
 	 * 订单ID
+	 * 
 	 * @return order_id
 	 */
 	public String getOrder_id() {
@@ -40,7 +40,8 @@ public class Order {
 	}
 
 	/**
-	 * @param order_id 要设置的 订单ID
+	 * @param order_id
+	 *            要设置的 订单ID
 	 */
 	public void setOrder_id(String order_id) {
 		this.order_id = order_id;
@@ -48,6 +49,7 @@ public class Order {
 
 	/**
 	 * 用户ID
+	 * 
 	 * @return user_Id
 	 */
 	public String getUser_Id() {
@@ -55,7 +57,8 @@ public class Order {
 	}
 
 	/**
-	 * @param user_Id 要设置的 用户ID
+	 * @param user_Id
+	 *            要设置的 用户ID
 	 */
 	public void setUser_Id(String user_Id) {
 		this.user_Id = user_Id;
@@ -63,6 +66,7 @@ public class Order {
 
 	/**
 	 * 订单总价
+	 * 
 	 * @return totalprice
 	 */
 	public String getTotalprice() {
@@ -70,7 +74,8 @@ public class Order {
 	}
 
 	/**
-	 * @param totalprice 要设置的 订单总价
+	 * @param totalprice
+	 *            要设置的 订单总价
 	 */
 	public void setTotalprice(String totalprice) {
 		this.totalprice = totalprice;
@@ -78,6 +83,7 @@ public class Order {
 
 	/**
 	 * 订单状态
+	 * 
 	 * @return stute
 	 */
 	public int getStute() {
@@ -85,7 +91,8 @@ public class Order {
 	}
 
 	/**
-	 * @param stute 要设置的 订单状态
+	 * @param stute
+	 *            要设置的 订单状态
 	 */
 	public void setStute(int stute) {
 		this.stute = stute;
@@ -99,7 +106,8 @@ public class Order {
 	}
 
 	/**
-	 * @param shopKeeperName 要设置的 shopKeeperName
+	 * @param shopKeeperName
+	 *            要设置的 shopKeeperName
 	 */
 	public void setShopKeeperName(String shopKeeperName) {
 		this.shopKeeperName = shopKeeperName;
@@ -113,7 +121,8 @@ public class Order {
 	}
 
 	/**
-	 * @param postagePrice 要设置的 postagePrice
+	 * @param postagePrice
+	 *            要设置的 postagePrice
 	 */
 	public void setPostagePrice(String postagePrice) {
 		this.postagePrice = postagePrice;
@@ -127,7 +136,8 @@ public class Order {
 	}
 
 	/**
-	 * @param shopId 要设置的商店ID
+	 * @param shopId
+	 *            要设置的商店ID
 	 */
 	public void setShopId(String shopId) {
 		this.shopId = shopId;
@@ -141,13 +151,11 @@ public class Order {
 	}
 
 	/**
-	 * @param ordersDetail 要设置的 ordersDetail
+	 * @param ordersDetail
+	 *            要设置的 ordersDetail
 	 */
 	public void setOrdersDetail(List<Map<String, Object>> ordersDetail) {
 		this.ordersDetail = ordersDetail;
 	}
-	
-	
-	
 
 }

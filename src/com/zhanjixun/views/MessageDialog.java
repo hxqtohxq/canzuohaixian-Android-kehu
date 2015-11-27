@@ -5,27 +5,27 @@ import android.app.AlertDialog.Builder;
 import android.content.Context;
 
 public class MessageDialog {
-	private Context context;
-	private AlertDialog alertDialog;
 
-	public MessageDialog(Context context, CharSequence message) {
-		this.context = context;
-		AlertDialog.Builder builder = new Builder(this.context);
-		builder.setMessage(message);
-		builder.setCancelable(true);
+	private AlertDialog dialog;
+
+	public MessageDialog(Context context, String message) {
+		AlertDialog.Builder builder = new Builder(context);
+		builder.setTitle("提示");
+		builder.setMessage("\n" + message + "\n");
 		builder.setPositiveButton("确定", null);
-		alertDialog = builder.create();
+		builder.setCancelable(true);
+		dialog = builder.create();
 	}
 
 	public void show() {
-		if (alertDialog != null) {
-			alertDialog.show();
+		if (dialog != null) {
+			dialog.show();
 		}
 	}
 
 	public void dissmiss() {
-		if (alertDialog != null && alertDialog.isShowing()) {
-			alertDialog.dismiss();
+		if (dialog != null && dialog.isShowing()) {
+			dialog.dismiss();
 		}
 	}
 }

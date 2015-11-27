@@ -72,11 +72,10 @@
         android:layout_height="wrap_content"
         android:src="@drawable/link" />
 
-    <com.zhanjixun.utils.MissMyViewPager
+    <android.support.v4.view.ViewPager
         android:id="@+id/order_home_viewPager"
-        android:background="@color/back_ground"
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
-    </com.zhanjixun.utils.MissMyViewPager>
+    </android.support.v4.view.ViewPager>
 
 </LinearLayout>
